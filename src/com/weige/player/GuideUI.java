@@ -21,7 +21,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 import android.widget.LinearLayout.LayoutParams;
 
 /**
@@ -40,8 +39,6 @@ public class GuideUI extends Activity implements OnPageChangeListener, OnClickLi
 		requestWindowFeature(Window.FEATURE_NO_TITLE);// 移除标题
 		setContentView(R.layout.guide);
 
-		Toast.makeText(this, "我是引导界面", 0).show();
-
 		initView();
 	}
 
@@ -53,10 +50,10 @@ public class GuideUI extends Activity implements OnPageChangeListener, OnClickLi
 
 		imageViewList = new ArrayList<ImageView>();
 		int[] imageIDs = { 
-				R.drawable.guide_first_person,
-				R.drawable.guide_second_person, 
-				R.drawable.guide_third_bottom_person,
-				R.drawable.guide_four_bottom_person };
+				R.drawable.guide_one,
+				R.drawable.guide_two, 
+				R.drawable.guide_three,
+				R.drawable.guide_four };
 		ImageView iv;
 		View view;
 		for (int i = 0; i < imageIDs.length; i++) {
@@ -71,8 +68,8 @@ public class GuideUI extends Activity implements OnPageChangeListener, OnClickLi
 				params.leftMargin = 20;
 			}
 			view.setLayoutParams(params);
-			view.setBackgroundResource(R.drawable.guide_point_gray_bg);
-			//view.setAlpha(100);
+			view.setBackgroundResource(R.drawable.guide_point_group_bg);
+			view.getBackground().setAlpha(100);
 			llPointGroup.addView(view);
 		}
 		// 把Adapter适配器和ViewPager关联起来

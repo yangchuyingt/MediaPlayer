@@ -12,29 +12,51 @@ public final class R {
     }
     public static final class drawable {
         public static final int bg_splash_beta=0x7f020000;
-        public static final int guide_first_person=0x7f020001;
-        public static final int guide_four_bottom_person=0x7f020002;
-        public static final int guide_point_gray_bg=0x7f020003;
-        public static final int guide_point_white_bg=0x7f020004;
-        public static final int guide_second_person=0x7f020005;
-        public static final int guide_third_bottom_person=0x7f020006;
-        public static final int ic_launcher=0x7f020007;
-        public static final int index_go_now_default=0x7f020008;
+        public static final int comm_ic_launcher=0x7f020001;
+        public static final int comm_ic_main_top_chang=0x7f020002;
+        public static final int comm_ic_main_top_chang_off=0x7f020003;
+        public static final int comm_ic_main_top_chang_on=0x7f020004;
+        public static final int comm_ic_main_top_kan=0x7f020005;
+        public static final int comm_ic_main_top_kan_off=0x7f020006;
+        public static final int comm_ic_main_top_kan_on=0x7f020007;
+        public static final int comm_ic_main_top_menu=0x7f020008;
+        public static final int comm_ic_main_top_ting=0x7f020009;
+        public static final int comm_ic_main_top_ting_off=0x7f02000a;
+        public static final int comm_ic_main_top_ting_on=0x7f02000b;
+        public static final int guide_four=0x7f02000c;
+        public static final int guide_one=0x7f02000d;
+        public static final int guide_point_group_bg=0x7f02000e;
+        public static final int guide_point_white_bg=0x7f02000f;
+        public static final int guide_three=0x7f020010;
+        public static final int guide_two=0x7f020011;
+        public static final int ic_launcher=0x7f020012;
+        public static final int index_go_now_default=0x7f020013;
+        public static final int skin_bg_player=0x7f020014;
     }
     public static final class id {
         public static final int btn_guide_start_experience=0x7f080001;
         public static final int fl_main=0x7f080004;
+        public static final int ib_ic_launcher=0x7f080005;
+        public static final int ib_ic_main_top_chang=0x7f08000b;
+        public static final int ib_ic_main_top_kan=0x7f08000a;
+        public static final int ib_ic_main_top_menu=0x7f08000c;
+        public static final int ib_ic_main_top_ting=0x7f080009;
         public static final int ll_guide_point_group=0x7f080002;
-        public static final int menu_settings=0x7f080006;
-        public static final int rl_root=0x7f080005;
+        public static final int menu_settings=0x7f08000f;
+        public static final int rl_function=0x7f080007;
+        public static final int rl_root=0x7f08000e;
+        public static final int tv_main_home=0x7f08000d;
         public static final int v_guide_selected_point=0x7f080003;
+        public static final int v_left=0x7f080006;
+        public static final int v_right=0x7f080008;
         public static final int viewpager_guide=0x7f080000;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
         public static final int guide=0x7f030001;
         public static final int main=0x7f030002;
-        public static final int welcome=0x7f030003;
+        public static final int main_home=0x7f030003;
+        public static final int welcome=0x7f030004;
     }
     public static final class menu {
         public static final int activity_main=0x7f070000;
