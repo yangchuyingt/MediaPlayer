@@ -9,10 +9,20 @@ package com.weige.player;
 
 public final class R {
     public static final class attr {
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int leftPadding=0x7f010000;
     }
     public static final class drawable {
-        public static final int bg_splash_beta=0x7f020000;
-        public static final int comm_ic_launcher=0x7f020001;
+        public static final int bg_menu=0x7f020000;
+        public static final int bg_splash_beta=0x7f020001;
         public static final int comm_ic_main_top_chang=0x7f020002;
         public static final int comm_ic_main_top_chang_off=0x7f020003;
         public static final int comm_ic_main_top_chang_on=0x7f020004;
@@ -30,21 +40,37 @@ public final class R {
         public static final int guide_three=0x7f020010;
         public static final int guide_two=0x7f020011;
         public static final int ic_launcher=0x7f020012;
-        public static final int index_go_now_default=0x7f020013;
-        public static final int skin_bg_player=0x7f020014;
+        public static final int index_background=0x7f020013;
+        public static final int index_go_now_default=0x7f020014;
+        public static final int kg_ic_playing_bar_next_default=0x7f020015;
+        public static final int kg_ic_playing_bar_next_pressed=0x7f020016;
+        public static final int kg_ic_playing_bar_pause_default=0x7f020017;
+        public static final int kg_ic_playing_bar_pause_pressed=0x7f020018;
+        public static final int kg_ic_playing_bar_play_default=0x7f020019;
+        public static final int kg_ic_playing_bar_play_pressed=0x7f02001a;
+        public static final int kg_ic_playing_bar_playlist_queue_default=0x7f02001b;
+        public static final int kg_player_fragment_full_avatar_logo=0x7f02001c;
+        public static final int playing_bar_default_avatar=0x7f02001d;
+        public static final int skin_bg_player=0x7f02001e;
     }
     public static final class id {
         public static final int btn_guide_start_experience=0x7f080001;
-        public static final int fl_main=0x7f080004;
+        public static final int ib_bar_next=0x7f080012;
+        public static final int ib_bar_play=0x7f080013;
+        public static final int ib_bar_playlist_queue=0x7f080011;
         public static final int ib_ic_launcher=0x7f080005;
         public static final int ib_ic_main_top_chang=0x7f08000b;
         public static final int ib_ic_main_top_kan=0x7f08000a;
         public static final int ib_ic_main_top_menu=0x7f08000c;
         public static final int ib_ic_main_top_ting=0x7f080009;
+        public static final int id_menu=0x7f080004;
         public static final int ll_guide_point_group=0x7f080002;
-        public static final int menu_settings=0x7f08000f;
-        public static final int rl_function=0x7f080007;
-        public static final int rl_root=0x7f08000e;
+        public static final int menu_settings=0x7f080015;
+        public static final int rg=0x7f080007;
+        public static final int rl_root=0x7f080014;
+        public static final int sb_bar=0x7f08000e;
+        public static final int tv_bar_singer=0x7f080010;
+        public static final int tv_bar_song_name=0x7f08000f;
         public static final int tv_main_home=0x7f08000d;
         public static final int v_guide_selected_point=0x7f080003;
         public static final int v_left=0x7f080006;
@@ -52,11 +78,10 @@ public final class R {
         public static final int viewpager_guide=0x7f080000;
     }
     public static final class layout {
-        public static final int activity_main=0x7f030000;
-        public static final int guide=0x7f030001;
-        public static final int main=0x7f030002;
-        public static final int main_home=0x7f030003;
-        public static final int welcome=0x7f030004;
+        public static final int guide=0x7f030000;
+        public static final int main=0x7f030001;
+        public static final int menu=0x7f030002;
+        public static final int welcome=0x7f030003;
     }
     public static final class menu {
         public static final int activity_main=0x7f070000;
@@ -97,4 +122,35 @@ public final class R {
          */
         public static final int AppTheme=0x7f060001;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a SlidingMenu.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #SlidingMenu_leftPadding com.weige.player:leftPadding}</code></td><td></td></tr>
+           </table>
+           @see #SlidingMenu_leftPadding
+         */
+        public static final int[] SlidingMenu = {
+            0x7f010000
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.weige.player.R.attr#leftPadding}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:leftPadding
+        */
+        public static final int SlidingMenu_leftPadding = 0;
+    };
 }

@@ -22,7 +22,6 @@ import android.view.animation.ScaleAnimation;
  * ª∂”≠ΩÁ√Ê
  */
 public class WelcomeUI extends Activity implements AnimationListener {
-	private static final String TAG = "WelcomeUI";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

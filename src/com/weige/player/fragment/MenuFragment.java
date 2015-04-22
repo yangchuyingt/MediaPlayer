@@ -8,11 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class HomeFragment extends Fragment {
+public class MenuFragment extends Fragment {
+	private View parentView;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.main, null);
-		return view;
+		parentView = inflater.inflate(R.layout.menu, null);
+		return parentView;
 	}
 }
