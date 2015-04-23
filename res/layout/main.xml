@@ -112,7 +112,7 @@
                 android:textSize="25sp" >
             </TextView>
 
-            <LinearLayout
+            <com.weige.player.slidingmenu.NoSlidingView
                 android:layout_width="fill_parent"
                 android:layout_height="70dp"
                 android:background="#FFFFFF"
@@ -187,7 +187,7 @@
                             android:background="@drawable/kg_ic_playing_bar_play_default" />
                     </RelativeLayout>
                 </LinearLayout>
-            </LinearLayout>
+            </com.weige.player.slidingmenu.NoSlidingView>
         </LinearLayout>
 
         <include layout="@layout/menu" />

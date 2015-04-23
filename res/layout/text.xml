@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/skin_bg_player"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#249ef6" >
+
+        <ImageButton
+            android:id="@+id/ib_ic_launcher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="7dp"
+            android:background="@drawable/kg_player_fragment_full_avatar_logo" />
+
+        <View
+            android:id="@+id/v_left"
+            android:layout_width="0.5dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="14dp"
+            android:layout_toRightOf="@id/ib_ic_launcher"
+            android:background="@android:color/white" />
+
+        <RadioGroup
+            android:id="@+id/rg"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_toLeftOf="@+id/v_right"
+            android:layout_toRightOf="@id/v_left"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/ib_ic_main_top_ting"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:button="@null"
+                android:drawableTop="@drawable/comm_ic_main_top_ting"
+                android:gravity="center_horizontal" />
+
+            <RadioButton
+                android:id="@+id/ib_ic_main_top_kan"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:button="@null"
+                android:drawableTop="@drawable/comm_ic_main_top_kan"
+                android:gravity="center_horizontal" />
+
+            <RadioButton
+                android:id="@+id/ib_ic_main_top_chang"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:button="@null"
+                android:drawableTop="@drawable/comm_ic_main_top_chang"
+                android:gravity="center_horizontal" />
+        </RadioGroup>
+
+        <View
+            android:id="@id/v_right"
+            android:layout_width="0.5dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="14dp"
+            android:layout_toLeftOf="@+id/ib_ic_main_top_menu"
+            android:background="@android:color/white" />
+
+        <ImageButton
+            android:id="@id/ib_ic_main_top_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="7dp"
+            android:background="@drawable/comm_ic_main_top_menu"
+            android:onClick="toggleMenu" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_main_home"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="我是主界面"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp" >
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="70dp"
+        android:background="#FFFFFF"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:background="@drawable/playing_bar_default_avatar" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <SeekBar
+                android:id="@+id/sb_bar"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" >
+
+                <TextView
+                    android:id="@+id/tv_bar_song_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/sb_bar"
+                    android:layout_marginLeft="8dp"
+                    android:text="song name"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_bar_singer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_bar_song_name"
+                    android:layout_marginLeft="8dp"
+                    android:paddingTop="1dp"
+                    android:text="singer"
+                    android:textSize="12sp" />
+
+                <ImageButton
+                    android:id="@+id/ib_bar_playlist_queue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="7dp"
+                    android:background="@drawable/kg_ic_playing_bar_playlist_queue_default" />
+
+                <ImageButton
+                    android:id="@+id/ib_bar_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
+                    android:layout_toLeftOf="@id/ib_bar_playlist_queue"
+                    android:background="@drawable/kg_ic_playing_bar_next_default" />
+
+                <ImageButton
+                    android:id="@+id/ib_bar_play"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
+                    android:layout_toLeftOf="@id/ib_bar_next"
+                    android:background="@drawable/kg_ic_playing_bar_play_default" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

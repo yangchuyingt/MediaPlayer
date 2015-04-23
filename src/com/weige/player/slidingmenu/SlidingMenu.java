@@ -107,6 +107,11 @@ public class SlidingMenu extends HorizontalScrollView {
 	}
 
 	@Override
+	public boolean dispatchTouchEvent(MotionEvent ev) {
+		// TODO Auto-generated method stub
+		return super.dispatchTouchEvent(ev);
+	}
+	@Override
 	public boolean onTouchEvent(MotionEvent ev)
 	{
 		int action = ev.getAction();
