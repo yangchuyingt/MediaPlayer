@@ -58,6 +58,7 @@
                         android:background="@android:color/transparent"
                         android:button="@null"
                         android:drawableTop="@drawable/comm_ic_main_top_ting"
+                        android:checked="true"
                         android:gravity="center_horizontal" />
 
                     <RadioButton
@@ -101,8 +102,8 @@
                     android:onClick="toggleMenu" />
             </RelativeLayout>
 
-            <TextView
-                android:id="@+id/tv_main_home"
+            <FrameLayout
+                android:id="@+id/fl_content"
                 android:layout_width="fill_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -110,9 +111,10 @@
                 android:text="我是主界面"
                 android:textColor="#FFFFFF"
                 android:textSize="25sp" >
-            </TextView>
+            </FrameLayout>
 
-            <com.weige.player.slidingmenu.NoSlidingView
+            <LinearLayout
+                android:id="@+id/ll_bottom"
                 android:layout_width="fill_parent"
                 android:layout_height="70dp"
                 android:background="#FFFFFF"
@@ -187,7 +189,7 @@
                             android:background="@drawable/kg_ic_playing_bar_play_default" />
                     </RelativeLayout>
                 </LinearLayout>
-            </com.weige.player.slidingmenu.NoSlidingView>
+            </LinearLayout>
         </LinearLayout>
 
         <include layout="@layout/menu" />

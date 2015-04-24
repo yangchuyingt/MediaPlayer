@@ -1,14 +1,15 @@
 package com.weige.player.slidingmenu;
 
-
 import com.nineoldandroids.view.ViewHelper;
 import com.weige.player.R;
 import com.weige.player.utils.ScreenUtils;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
@@ -34,27 +35,24 @@ public class SlidingMenu extends HorizontalScrollView {
 	private boolean once;
 
 	private ViewGroup mMenu;
-	private ViewGroup mContent;
+	private ViewGroup mMainUI;
+	private LinearLayout ll_bottom;
 
-	public SlidingMenu(Context context, AttributeSet attrs)
-	{
+	public SlidingMenu(Context context, AttributeSet attrs) {
 		this(context, attrs, 0);
 
 	}
 
-	public SlidingMenu(Context context, AttributeSet attrs, int defStyle)
-	{
+	public SlidingMenu(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		mScreenWidth = ScreenUtils.getScreenWidth(context);
 
 		TypedArray a = context.getTheme().obtainStyledAttributes(attrs,
 				R.styleable.SlidingMenu, defStyle, 0);
 		int n = a.getIndexCount();
-		for (int i = 0; i < n; i++)
-		{
+		for (int i = 0; i < n; i++) {
 			int attr = a.getIndex(i);
-			switch (attr)
-			{
+			switch (attr) {
 			case R.styleable.SlidingMenu_leftPadding:
 				// 默认50
 				mMenuRightPadding = a.getDimensionPixelSize(attr,
@@ -67,27 +65,25 @@ public class SlidingMenu extends HorizontalScrollView {
 		a.recycle();
 	}
 
-	public SlidingMenu(Context context)
-	{
+	public SlidingMenu(Context context) {
 		this(context, null, 0);
 	}
 
 	@Override
-	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
-	{
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		/**
 		 * 显示的设置一个宽度
 		 */
-		if (!once)
-		{
+		if (!once) {
 			LinearLayout wrapper = (LinearLayout) getChildAt(0);
-			mContent = (ViewGroup) wrapper.getChildAt(0);
+			mMainUI = (ViewGroup) wrapper.getChildAt(0);
 			mMenu = (ViewGroup) wrapper.getChildAt(1);
 
 			mMenuWidth = mScreenWidth - mMenuRightPadding;
 			mHalfMenuWidth = mMenuWidth / 2;
 			mMenu.getLayoutParams().width = mMenuWidth;
-			mContent.getLayoutParams().width = mScreenWidth;
+			mMainUI.getLayoutParams().width = mScreenWidth;
+			ll_bottom = (LinearLayout) mMainUI.findViewById(R.id.ll_bottom);
 
 		}
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -95,11 +91,37 @@ public class SlidingMenu extends HorizontalScrollView {
 	}
 
 	@Override
-	protected void onLayout(boolean changed, int l, int t, int r, int b)
-	{
+	public boolean onInterceptTouchEvent(MotionEvent ev) {
+		switch (ev.getAction()) {
+		case MotionEvent.ACTION_DOWN:
+			int downx = (int) ev.getRawX();
+			int downy = (int) ev.getRawY();
+			if (getrect().contains(downx, downy)) {
+
+				return false;
+			}
+			break;
+
+		default:
+			break;
+		}
+		return super.onInterceptTouchEvent(ev);
+	}
+
+	private Rect getrect() {
+		System.out.println("left"+ll_bottom.getLeft());
+		System.out.println("top"+ll_bottom.getTop());
+		System.out.println("right"+ll_bottom.getRight());
+		System.out.println("bottom"+ll_bottom.getBottom());
+		Rect rect = new Rect(ll_bottom.getLeft(), ll_bottom.getTop(),
+				ll_bottom.getRight(), ll_bottom.getBottom());
+		return rect;
+	}
+
+	@Override
+	protected void onLayout(boolean changed, int l, int t, int r, int b) {
 		super.onLayout(changed, l, t, r, b);
-		if (changed)
-		{
+		if (changed) {
 			// 将菜单隐藏
 			this.scrollTo(0, 0);
 			once = true;
@@ -107,25 +129,21 @@ public class SlidingMenu extends HorizontalScrollView {
 	}
 
 	@Override
-	public boolean dispatchTouchEvent(MotionEvent ev) {
-		// TODO Auto-generated method stub
-		return super.dispatchTouchEvent(ev);
-	}
-	@Override
-	public boolean onTouchEvent(MotionEvent ev)
-	{
+	public boolean onTouchEvent(MotionEvent ev) {
 		int action = ev.getAction();
-		switch (action)
-		{
+		if(getrect().contains((int) ev.getX(), (int) ev.getY())){
+			return true;
+		}else{
+			super.onTouchEvent(ev);
+		}
+		switch (action) {
 		// Up时，进行判断，如果显示区域大于菜单宽度一半则完全显示，否则隐藏
 		case MotionEvent.ACTION_UP:
 			int scrollX = getScrollX();
-			if (scrollX > mHalfMenuWidth)
-			{
+			if (scrollX > mHalfMenuWidth) {
 				this.smoothScrollTo(mMenuWidth, 0);
 				isOpen = true;
-			} else
-			{
+			} else {
 				this.smoothScrollTo(0, 0);
 				isOpen = false;
 			}
@@ -137,8 +155,7 @@ public class SlidingMenu extends HorizontalScrollView {
 	/**
 	 * 打开菜单
 	 */
-	public void openMenu()
-	{
+	public void openMenu() {
 		if (isOpen)
 			return;
 		this.smoothScrollTo(mMenuWidth, 0);
@@ -148,10 +165,8 @@ public class SlidingMenu extends HorizontalScrollView {
 	/**
 	 * 关闭菜单
 	 */
-	public void closeMenu()
-	{
-		if (isOpen)
-		{
+	public void closeMenu() {
+		if (isOpen) {
 			this.smoothScrollTo(0, 0);
 			isOpen = false;
 		}
@@ -160,35 +175,31 @@ public class SlidingMenu extends HorizontalScrollView {
 	/**
 	 * 切换菜单状态
 	 */
-	public void toggle()
-	{
-		if (isOpen)
-		{
+	public void toggle() {
+		if (isOpen) {
 			closeMenu();
-		} else
-		{
+		} else {
 			openMenu();
 		}
 	}
 
 	@Override
-	protected void onScrollChanged(int l, int t, int oldl, int oldt)
-	{
+	protected void onScrollChanged(int l, int t, int oldl, int oldt) {
 		super.onScrollChanged(l, t, oldl, oldt);
 		float scale = l * 1.0f / mMenuWidth;
 		float rightScale = (0.8f + scale * 0.2f);
 		float leftScale = (1 - 0.3f * scale);
-		
-		ViewHelper.setPivotX(mContent, mMenuWidth);
-		ViewHelper.setPivotY(mContent, mContent.getHeight() / 2);
-		ViewHelper.setScaleX(mContent, leftScale);
-		ViewHelper.setScaleY(mContent, leftScale);
-		ViewHelper.setAlpha(mContent, 0.6f + 0.4f * (1 - scale));
-		
+
+		ViewHelper.setPivotX(mMainUI, mMenuWidth);
+		ViewHelper.setPivotY(mMainUI, mMainUI.getHeight() / 2);
+		ViewHelper.setScaleX(mMainUI, leftScale);
+		ViewHelper.setScaleY(mMainUI, leftScale);
+		ViewHelper.setAlpha(mMainUI, 0.6f + 0.4f * (1 - scale));
+
 		ViewHelper.setScaleX(mMenu, rightScale);
 		ViewHelper.setScaleY(mMenu, rightScale);
 		ViewHelper.setAlpha(mMenu, 0.6f + 0.4f * scale);
-//		ViewHelper.setTranslationX(mMenu, mMenuWidth * scale);//偏移量
+		// ViewHelper.setTranslationX(mMenu, mMenuWidth * scale);//偏移量
 	}
 
 }
