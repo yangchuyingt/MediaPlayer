@@ -57,7 +57,7 @@ public class WelcomeUI extends Activity implements AnimationListener {
 		animSet.setAnimationListener(this);
 		rlRootView.startAnimation(animSet);
 		
-		hello();
+		//hello();
 	}
 	
 	@Override
