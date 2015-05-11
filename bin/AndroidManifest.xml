@@ -7,6 +7,7 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -25,6 +26,9 @@
         </activity>
         <activity android:name="com.weige.player.GuideUI"></activity>
         <activity android:name="com.weige.player.MainUI"></activity>
+        <activity android:name="com.weige.player.LyricUI"></activity>
+        <service android:name="com.weige.player.fragment.PlayerService">
+        </service>
     </application>
 
 </manifest>

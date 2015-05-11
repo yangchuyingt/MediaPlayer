@@ -12,6 +12,6 @@ public class KanFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.tab_kan, null);
+		return inflater.inflate(R.layout.kan, null);
 	}
 }

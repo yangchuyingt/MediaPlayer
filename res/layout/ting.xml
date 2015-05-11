@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sv_tab_ting"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none" >
+
+    <LinearLayout
+        android:id="@+id/ll_main_ting_search"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <requestFocus />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="42dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_bg_selector"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_height="fill_parent"
+                android:layout_width="fill_parent"
+                android:background="@android:color/transparent"
+                android:layout_toLeftOf="@+id/iv_del_text_ting_search"
+                android:hint="请输入歌曲名/歌手/歌词..."
+                android:paddingLeft="20dp"
+                android:singleLine="true"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/iv_del_text_ting_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/v_ting_search"
+                android:src="@drawable/btn_navigation_clear_text_button_default"
+                android:visibility="gone" />
+
+            <View
+                android:id="@id/v_ting_search"
+                android:layout_width="1dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:layout_toLeftOf="@+id/ib_ting_search"
+                android:background="@android:color/darker_gray" />
+
+            <ImageButton
+                android:id="@id/ib_ting_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ic_main_ting_search_selector" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ting_bg_normal"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/rl_localmusic"
+                android:layout_width="fill_parent"
+                android:layout_height="66dp"
+                android:clickable="true"
+                android:padding="10dp" >
+
+                <TextView
+                    android:id="@+id/tv_local_music"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="本地音乐"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_local_music_counts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="7dp"
+                    android:layout_toRightOf="@id/tv_local_music"
+                    android:text="0首"
+                    android:textColor="#888888"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/iv_local_music_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/tv_local_music_counts"
+                    android:background="@drawable/arrow_toward_right" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/ic_main_ting_local_play_selector" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="300dp"
+                android:layout_height="0.5dp"
+                android:layout_gravity="center_horizontal"
+                android:alpha="0.3"
+                android:background="#000000" />
+
+            <RadioGroup
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/rb_main_ting_local_entry_fav"
+                    style="@style/main_ting_local_entry_style"
+                    android:drawableTop="@drawable/ic_main_ting_local_entry_fav_selector"
+                    android:text="我喜欢" />
+
+                <RadioButton
+                    android:id="@+id/rb_main_ting_local_entry_playlist"
+                    style="@style/main_ting_local_entry_style"
+                    android:drawableTop="@drawable/ic_main_ting_local_entry_playlist_selector"
+                    android:text="我的歌单" />
+
+                <RadioButton
+                    android:id="@+id/rb_main_ting_local_entry_download"
+                    style="@style/main_ting_local_entry_style"
+                    android:drawableTop="@drawable/ic_main_ting_local_entry_download_selector"
+                    android:text="下载管理" />
+
+                <RadioButton
+                    android:id="@+id/rb_main_ting_local_entry_history"
+                    style="@style/main_ting_local_entry_style"
+                    android:drawableTop="@drawable/ic_main_ting_local_entry_history_selector"
+                    android:text="最近播放" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="92dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/ting_bg_normal"
+                android:clickable="true"
+                android:padding="10dp" >
+
+                <TextView
+                    android:id="@+id/tv_music_lib"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="乐库"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_music_lib_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_music_lib"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="12dp"
+                    android:text="排行榜 | 歌手 | 歌单 | 分类"
+                    android:textColor="#888888"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/iv_music_lib_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/arrow_toward_right" />
+            </RelativeLayout>
+
+            <RadioButton
+                android:layout_width="95dp"
+                android:layout_height="fill_parent"
+                android:background="@drawable/ting_bg_normal"
+                android:button="@null"
+                android:drawablePadding="6dp"
+                android:drawableTop="@drawable/kg_ic_navigation_crbt"
+                android:gravity="center_horizontal"
+                android:padding="16dp"
+                android:singleLine="true"
+                android:text="电台"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <RadioGroup
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ting_bg_normal"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/rb_main_ting_more_fm"
+                style="@style/main_ting_more_style"
+                android:drawableTop="@drawable/ic_main_ting_more_fm_selector"
+                android:text="收音机" />
+
+            <RadioButton
+                android:id="@+id/rb_main_ting_more_ringtone"
+                style="@style/main_ting_more_style"
+                android:drawableTop="@drawable/ic_main_ting_more_ringtone_selector"
+                android:text="铃声" />
+
+            <RadioButton
+                android:id="@+id/rb_main_ting_more_game"
+                style="@style/main_ting_more_style"
+                android:drawableTop="@drawable/ic_main_ting_more_game_selector"
+                android:text="游戏" />
+
+            <RadioButton
+                android:id="@+id/rb_main_ting_more_jpyy"
+                style="@style/main_ting_more_style"
+                android:drawableTop="@drawable/ic_main_ting_more_jpyy_selector"
+                android:text="精品应用" />
+        </RadioGroup>
+    </LinearLayout>
+
+</ScrollView>

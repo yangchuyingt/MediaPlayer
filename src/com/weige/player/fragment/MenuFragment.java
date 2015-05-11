@@ -9,12 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class MenuFragment extends Fragment {
-	private View parentView;
+	private View menuView;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		parentView = inflater.inflate(R.layout.menu, null);
-		return parentView;
+		menuView = inflater.inflate(R.layout.right_menu, null);
+		return menuView;
 	}
 }

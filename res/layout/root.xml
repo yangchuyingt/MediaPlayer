@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.weige.player.slidingmenu.SlidingMenu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:wwm="http://schemas.android.com/apk/res/com.weige.player"
+    android:id="@+id/menu"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg_menu"
+    android:scrollbars="none"
+    wwm:leftPadding="70dp" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/skin_bg_player"
+            android:orientation="vertical" >
+
+            <FrameLayout
+                android:id="@+id/fl_main"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" >
+            </FrameLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_bottom"
+                android:layout_width="fill_parent"
+                android:layout_height="70dp"
+                android:background="#FFFFFF"
+                android:clickable="true"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/ib_default_avatar"
+                    android:layout_width="60dp"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="3dp"
+                    android:background="@drawable/playing_bar_default_avatar" />
+
+                <SeekBar
+                    android:id="@+id/sb_main_bottom"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/ib_default_avatar"
+                    android:focusable="true"
+                    android:maxHeight="2dp"
+                    android:minHeight="2dp"
+                    android:progressDrawable="@drawable/po_seekbar"
+                    android:thumb="@drawable/ic_main_bottom_play_bar" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_main_bottom_play"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="8dp"
+                    android:layout_toRightOf="@id/ib_default_avatar" >
+
+                    <TextView
+                        android:id="@+id/tv_bar_song_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/sb_main_bottom"
+                        android:layout_marginLeft="8dp"
+                        android:text="歌曲名"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tv_bar_singer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_bar_song_name"
+                        android:layout_marginLeft="8dp"
+                        android:paddingTop="4dp"
+                        android:text="歌手"
+                        android:textColor="#7d7d7d"
+                        android:textSize="12sp" />
+
+                    <ImageButton
+                        android:id="@+id/ib_bar_playlist_queue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="8dp"
+                        android:background="@drawable/kg_ic_playing_bar_playlist_queue_default" />
+
+                    <ImageButton
+                        android:id="@+id/ib_bar_next"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="12dp"
+                        android:layout_toLeftOf="@id/ib_bar_playlist_queue"
+                        android:background="@drawable/ic_main_playing_bar_next_selector" />
+
+                    <ImageButton
+                        android:id="@+id/ib_bar_play"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="12dp"
+                        android:layout_toLeftOf="@id/ib_bar_next"
+                        android:background="@drawable/ic_main_playing_bar_play_selector" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <include layout="@layout/right_menu" />
+    </LinearLayout>
+
+</com.weige.player.slidingmenu.SlidingMenu>

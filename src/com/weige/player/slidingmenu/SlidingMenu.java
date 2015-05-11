@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 public class SlidingMenu extends HorizontalScrollView {
 
@@ -36,7 +37,7 @@ public class SlidingMenu extends HorizontalScrollView {
 
 	private ViewGroup mMenu;
 	private ViewGroup mMainUI;
-	private LinearLayout ll_bottom;
+	private RelativeLayout rl_bottom;
 
 	public SlidingMenu(Context context, AttributeSet attrs) {
 		this(context, attrs, 0);
@@ -83,11 +84,27 @@ public class SlidingMenu extends HorizontalScrollView {
 			mHalfMenuWidth = mMenuWidth / 2;
 			mMenu.getLayoutParams().width = mMenuWidth;
 			mMainUI.getLayoutParams().width = mScreenWidth;
-			ll_bottom = (LinearLayout) mMainUI.findViewById(R.id.ll_bottom);
+			rl_bottom = (RelativeLayout) mMainUI.findViewById(R.id.rl_bottom);
 
 		}
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
+	}
+
+	@Override
+	protected void onLayout(boolean changed, int l, int t, int r, int b) {
+		super.onLayout(changed, l, t, r, b);
+		if (changed) {
+			// 将菜单隐藏
+			this.scrollTo(0, 0);
+			once = true;
+		}
+	}
+
+	private Rect getrect() {
+		Rect rect = new Rect(rl_bottom.getLeft(), rl_bottom.getTop(),
+				rl_bottom.getRight(), rl_bottom.getBottom());
+		return rect;
 	}
 
 	@Override
@@ -108,38 +125,40 @@ public class SlidingMenu extends HorizontalScrollView {
 		return super.onInterceptTouchEvent(ev);
 	}
 
-	private Rect getrect() {
-		System.out.println("left"+ll_bottom.getLeft());
-		System.out.println("top"+ll_bottom.getTop());
-		System.out.println("right"+ll_bottom.getRight());
-		System.out.println("bottom"+ll_bottom.getBottom());
-		Rect rect = new Rect(ll_bottom.getLeft(), ll_bottom.getTop(),
-				ll_bottom.getRight(), ll_bottom.getBottom());
-		return rect;
-	}
-
-	@Override
-	protected void onLayout(boolean changed, int l, int t, int r, int b) {
-		super.onLayout(changed, l, t, r, b);
-		if (changed) {
-			// 将菜单隐藏
-			this.scrollTo(0, 0);
-			once = true;
-		}
-	}
-
+	@Override  
+    public boolean dispatchTouchEvent(MotionEvent ev)  
+    {  
+        int action = ev.getAction();  
+        switch (action)  
+        {  
+        case MotionEvent.ACTION_DOWN:  
+            break;  
+        case MotionEvent.ACTION_MOVE:  
+            break;  
+        case MotionEvent.ACTION_UP:  
+            break;  
+        default:  
+            break;  
+        }  
+        return super.dispatchTouchEvent(ev);  
+    }
+	
 	@Override
 	public boolean onTouchEvent(MotionEvent ev) {
+		int scrollX = getScrollX();
 		int action = ev.getAction();
-		if(getrect().contains((int) ev.getX(), (int) ev.getY())){
+		if (getrect().contains((int) ev.getX(), (int) ev.getY())) {
 			return true;
-		}else{
+		} else {
 			super.onTouchEvent(ev);
 		}
 		switch (action) {
+		case MotionEvent.ACTION_DOWN:  
+            break;  
+        case MotionEvent.ACTION_MOVE: 
+        	break;
 		// Up时，进行判断，如果显示区域大于菜单宽度一半则完全显示，否则隐藏
 		case MotionEvent.ACTION_UP:
-			int scrollX = getScrollX();
 			if (scrollX > mHalfMenuWidth) {
 				this.smoothScrollTo(mMenuWidth, 0);
 				isOpen = true;
@@ -148,9 +167,11 @@ public class SlidingMenu extends HorizontalScrollView {
 				isOpen = false;
 			}
 			return true;
+//			break;
 		}
 		return super.onTouchEvent(ev);
 	}
+	
 
 	/**
 	 * 打开菜单
@@ -199,7 +220,7 @@ public class SlidingMenu extends HorizontalScrollView {
 		ViewHelper.setScaleX(mMenu, rightScale);
 		ViewHelper.setScaleY(mMenu, rightScale);
 		ViewHelper.setAlpha(mMenu, 0.6f + 0.4f * scale);
-		// ViewHelper.setTranslationX(mMenu, mMenuWidth * scale);//偏移量
+		ViewHelper.setTranslationX(mMenu, mMenuWidth * scale * 0.05f);//偏移量
 	}
 
 }

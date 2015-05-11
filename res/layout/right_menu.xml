@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="75dp"
+        android:layout_marginRight="10dp" >
+
+        <RadioButton
+            android:id="@+id/rb_login"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="30dp"
+            android:background="@android:color/transparent"
+            android:button="@null"
+            android:drawablePadding="1dp"
+            android:drawableTop="@drawable/kg_slide__listen_menu_logout_default"
+            android:gravity="center_horizontal"
+            android:paddingTop="10dp"
+            android:text="登 录"
+            android:textColor="#FFFFFF" />
+
+        <RadioButton
+            android:id="@+id/rb_skin_change"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="35dp"
+            android:background="@android:color/transparent"
+            android:button="@null"
+            android:drawablePadding="5dp"
+            android:drawableTop="@drawable/kg_slide_menu_change_bg"
+            android:gravity="center_horizontal"
+            android:paddingTop="20dp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:alpha="0.5"
+        android:background="#FFFFFF" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <RadioGroup
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/rb_slide_menu_vip"
+                style="@style/menu_tab_style"
+                android:drawableTop="@drawable/kg_slide_menu_vip"
+                android:text="升级为VIP" />
+
+            <RadioButton
+                android:id="@+id/rb_slide_menu_monthlytraffic"
+                style="@style/menu_tab_style"
+                android:drawableTop="@drawable/kg_slide_menu_monthlytraffic"
+                android:text="流量包月" />
+
+            <RadioButton
+                android:id="@+id/rb_slide_menu_search"
+                style="@style/menu_tab_style"
+                android:drawableTop="@drawable/kg_slide_menu_search"
+                android:text="搜索" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/rb_slide_menu_musichunter"
+                style="@style/menu_tab_style"
+                android:drawableTop="@drawable/kg_slide_menu_musichunter"
+                android:text="听歌识曲" />
+
+            <RadioButton
+                android:id="@+id/rb_slide_menu_musicalarm"
+                style="@style/menu_tab_style"
+                android:drawableTop="@drawable/kg_slide_menu_musicalarm"
+                android:text="定时" />
+
+            <RadioButton
+                android:id="@+id/rb_slide_menu_equalizer"
+                style="@style/menu_tab_style"
+                android:drawableTop="@drawable/kg_slide_menu_equalizer"
+                android:text="音效" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/rb_slide_menu_music_scan"
+                style="@style/menu_tab_style"
+                android:drawableTop="@drawable/kg_slide_menu_music_scan"
+                android:text="扫描" />
+
+            <RadioButton
+                android:id="@+id/rb_slide_menu_transfer"
+                style="@style/menu_tab_style"
+                android:drawableTop="@drawable/kg_slide_menu_transfer"
+                android:text="传歌" />
+
+            <RadioButton
+                android:id="@+id/rb_slide_menu_settings"
+                style="@style/menu_tab_style"
+                android:drawableTop="@drawable/kg_slide_menu_settings"
+                android:text="设置" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:alpha="0.5"
+        android:background="#FFFFFF" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:layout_marginRight="10dp" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/cb_slide_menu_wifinet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:button="@null"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:textSize="10sp"
+                android:textColor="#FFFFFF"
+                android:drawablePadding="2dp"
+                android:text="仅wifi联网"
+                android:background="@drawable/ic_menu_button_bg_selector"
+                android:drawableLeft="@drawable/ic_menu_checkbox_selector" />
+
+            <CheckBox
+                android:id="@+id/cb_slide_menu_desktoplyric"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:button="@null"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:layout_marginLeft="20dp"
+                android:textSize="10sp"
+                android:textColor="#FFFFFF"
+                android:drawablePadding="2dp"
+                android:text="桌面歌词"
+                android:background="@drawable/ic_menu_button_bg_selector"
+                android:drawableLeft="@drawable/ic_menu_checkbox_selector" /> 
+
+            <CheckBox
+                android:id="@+id/cb_slide_menu_lockedlyric"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:button="@null"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:layout_marginLeft="20dp"
+                android:textSize="10sp"
+                android:textColor="#FFFFFF"
+                android:drawablePadding="2dp"
+                android:text="锁屏歌词"
+                android:checked="true"
+                android:background="@drawable/ic_menu_button_bg_selector"
+                android:drawableLeft="@drawable/ic_menu_checkbox_selector" /> 
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:alpha="0.5"
+        android:background="#FFFFFF" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="75dp"
+        android:layout_marginRight="10dp" >
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@android:color/transparent"
+            android:button="@null"
+            android:drawableLeft="@drawable/kg_slide_menu_home_default"
+            android:drawablePadding="2dp"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="返回首页"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:background="@android:color/transparent"
+            android:button="@null"
+            android:drawableLeft="@drawable/kg_slide_menu_exit_btn_default"
+            android:drawablePadding="2dp"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="退出"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+</LinearLayout>
