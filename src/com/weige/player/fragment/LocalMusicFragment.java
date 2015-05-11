@@ -10,13 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 
-public class LocalMusicFragment extends Fragment implements OnCheckedChangeListener, OnItemClickListener {
+public class LocalMusicFragment extends Fragment implements OnCheckedChangeListener, OnItemSelectedListener {
 
 	private View view;
 	private RadioGroup rg_local_music;
@@ -40,9 +41,13 @@ public class LocalMusicFragment extends Fragment implements OnCheckedChangeListe
 	}
 	
 	private void initdata() {
+		int[] img=new int[]{R.drawable.order_play,R.drawable.radom_play,R.drawable.cycle_play};
+		String [] playtext =new String []{
+				"顺序播放","随机播放","单曲循环"
+		};
 		rg_local_music.setOnCheckedChangeListener(this);
-		sp_local_music.setOnItemClickListener(this);
-		Spinneradapter adapter =new Spinneradapter();
+		sp_local_music.setOnItemSelectedListener(this);
+		Spinneradapter adapter =new Spinneradapter(getActivity(),img,playtext);
 		sp_local_music.setAdapter(adapter);
 		
 	}
@@ -54,10 +59,18 @@ public class LocalMusicFragment extends Fragment implements OnCheckedChangeListe
 	}
 
 	@Override
-	public void onItemClick(AdapterView<?> parent, View view, int position,
+	public void onItemSelected(AdapterView<?> parent, View view, int position,
 			long id) {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> parent) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 
 }
