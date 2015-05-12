@@ -14,6 +14,7 @@ public class Spinneradapter implements SpinnerAdapter {
      private Context context;
 	private int[] img;
 	private String[] playtext;
+	private int mark=0;
 
 	public Spinneradapter(Context  context, int[] img, String[] playtext) {
 		this.img=img;
@@ -98,18 +99,22 @@ public class Spinneradapter implements SpinnerAdapter {
 
 	@Override
 	public View getDropDownView(int position, View convertView, ViewGroup parent) {
-		ViewHolder viewholder;
+		final ViewHolder viewholder;
 		if(convertView==null){
 			convertView=View.inflate(context, R.layout.spinneradapterview, null);
 			viewholder=new ViewHolder();
 			viewholder.iv_sp_mark=(ImageView) convertView.findViewById(R.id.iv_sp_mark);
-			
 			viewholder.iv_sp_play_img=(ImageView) convertView.findViewById(R.id.iv_sp_play_img);
 			viewholder.tv_sp_play_text=(TextView) convertView.findViewById(R.id.tv_sp_play_text);
 			convertView.setTag(viewholder);
 		}else {
 			viewholder=(ViewHolder) convertView.getTag();
 			
+		}
+		if(position==mark){
+			viewholder.iv_sp_mark.setVisibility(View.VISIBLE);
+		}else{
+			viewholder.iv_sp_mark.setVisibility(View.INVISIBLE);
 		}
 		viewholder.iv_sp_play_img.setImageResource(img[position]);
 		viewholder.tv_sp_play_text.setText(playtext[position]);
@@ -135,6 +140,9 @@ public class Spinneradapter implements SpinnerAdapter {
 		viewholder.iv_sp_play_img.setImageResource(img[position]);
 		viewholder.tv_sp_play_text.setText(playtext[position]);
 		return convertView;
+	}
+	public void setmark(int position){
+		this.mark=position;
 	}
 	
 }
