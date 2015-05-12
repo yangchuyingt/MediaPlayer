@@ -6,23 +6,26 @@ import android.content.Context;
 import android.database.Cursor;
 import android.provider.MediaStore;
 import android.support.v4.widget.CursorAdapter;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
 public class MusicShowAdapter extends CursorAdapter {
- 
+    	
+    
 	public MusicShowAdapter(Context context, Cursor c) {
 		super(context, c);
 	}
-
 	@Override
 	public void bindView(View view, Context context , Cursor c) {
 		ViewHolder viewholder=(ViewHolder) view.getTag();
-		viewholder.tv_song_name.setText(c.getString(c.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME )));
+		String name=c.getString(c.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME ));
+		viewholder.tv_song_name.setText(name);
 	}
 
 	@Override
@@ -39,6 +42,8 @@ public class MusicShowAdapter extends CursorAdapter {
 			holder.ll_add=(LinearLayout) view.findViewById(R.id.ll_add);
 			holder.ll_music_message=(LinearLayout) view.findViewById(R.id.ll_music_message);
 			holder.ll_delete=(LinearLayout) view.findViewById(R.id.ll_delete);
+			holder.ll_buttonitem=(LinearLayout) view.findViewById(R.id.ll_buttonitem);
+			
 			view.setTag(holder);
 		return view;
 	}
@@ -46,8 +51,9 @@ public class MusicShowAdapter extends CursorAdapter {
 	   TextView tv_alphabat,tv_song_name;
 	   ImageView iv_add_to_play_list;
 	   RadioButton rb_more_options;
-	   LinearLayout ll_set_to_ring,ll_add,ll_music_message,ll_delete;
+	   LinearLayout ll_buttonitem ,ll_set_to_ring,ll_add,ll_music_message,ll_delete;
    }
+
 	
 
 }

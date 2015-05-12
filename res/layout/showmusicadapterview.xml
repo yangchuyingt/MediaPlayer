@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
         android:text="A"
+        android:visibility="gone"
         android:textColor="@color/blue"
         android:textSize="14sp" />
 
@@ -56,6 +57,8 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/ll_buttonitem"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/defult_gray"

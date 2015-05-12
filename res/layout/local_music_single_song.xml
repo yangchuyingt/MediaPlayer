@@ -47,6 +47,10 @@
              android:id="@+id/lv_show_song_name"
              android:layout_width="0dp"
              android:layout_weight="1"
+             android:divider="@null"
+             android:scrollbarFadeDuration="0"
+             android:fadeScrollbars="false"
+             android:scrollbars="none"
              android:layout_height="wrap_content">
          </ListView>
          <ListView 
