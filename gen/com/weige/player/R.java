@@ -157,13 +157,14 @@ containing a value of this type.
         public static final int playing_bar_default_avatar=0x7f02007f;
         public static final int po_seekbar=0x7f020080;
         public static final int radom_play=0x7f020081;
-        public static final int shadow_light=0x7f020082;
-        public static final int skin_bg_player=0x7f020083;
-        public static final int spinner_bg=0x7f020084;
-        public static final int spinner_bg_pressed=0x7f020085;
-        public static final int spinnerbg_selector=0x7f020086;
-        public static final int ting_bg_normal=0x7f020087;
-        public static final int vertical_devide_line=0x7f020088;
+        public static final int shadow_bottom=0x7f020082;
+        public static final int shadow_top=0x7f020083;
+        public static final int skin_bg_player=0x7f020084;
+        public static final int spinner_bg=0x7f020085;
+        public static final int spinner_bg_pressed=0x7f020086;
+        public static final int spinnerbg_selector=0x7f020087;
+        public static final int ting_bg_normal=0x7f020088;
+        public static final int vertical_devide_line=0x7f020089;
     }
     public static final class id {
         public static final int artist=0x7f09001e;
@@ -354,7 +355,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.weige.player:leftPadding
+          @attr name android:leftPadding
         */
         public static final int SlidingMenu_leftPadding = 0;
     };

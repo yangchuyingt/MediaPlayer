@@ -37,7 +37,7 @@
      <ImageView 
         android:layout_width="match_parent"
         android:layout_height="7dp"
-        android:background="@drawable/shadow_light"/>
+        android:background="@drawable/shadow_bottom"/>
      <LinearLayout 
          android:layout_width="match_parent"
          android:layout_height="match_parent"
@@ -54,7 +54,7 @@
              android:layout_height="wrap_content">
          </ListView>
          <ListView 
-             android:layout_marginLeft="25dp"
+             android:layout_marginLeft="10dp"
              android:id="@+id/lv_alphabet_order"
              android:layout_width="30dp"
              android:divider="@null"
@@ -62,4 +62,5 @@
              android:layout_height="wrap_content">
          </ListView>
      </LinearLayout>
+     
 </LinearLayout>
