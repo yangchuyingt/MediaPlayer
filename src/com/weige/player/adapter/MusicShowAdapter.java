@@ -4,6 +4,7 @@ import com.weige.player.R;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.provider.MediaStore;
 import android.support.v4.widget.CursorAdapter;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ public class MusicShowAdapter extends CursorAdapter {
 	@Override
 	public void bindView(View view, Context context , Cursor c) {
 		ViewHolder viewholder=(ViewHolder) view.getTag();
+		viewholder.tv_song_name.setText(c.getString(c.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME )));
 	}
 
 	@Override

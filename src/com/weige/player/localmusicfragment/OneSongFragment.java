@@ -14,6 +14,7 @@ import android.widget.Spinner;
 
 import com.weige.player.R;
 import com.weige.player.adapter.AlphabatOrderAdapter;
+import com.weige.player.adapter.MusicShowAdapter;
 import com.weige.player.adapter.Spinneradapter;
 
 public class OneSongFragment extends Fragment implements OnItemSelectedListener {
@@ -49,6 +50,8 @@ public class OneSongFragment extends Fragment implements OnItemSelectedListener 
 		Cursor cursor = getActivity().getContentResolver().query(  
 			       MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null, null,  
 			       MediaStore.Audio.Media.DEFAULT_SORT_ORDER); 
+		MusicShowAdapter adapter =new MusicShowAdapter(getActivity(), cursor);
+		lv_show_song_name.setAdapter(adapter);
 	}
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int position,
