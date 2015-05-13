@@ -42,7 +42,7 @@ public class OneSongFragment extends Fragment implements OnItemSelectedListener 
 		String [] playtext =new String []{
 				"顺序播放","随机播放","单曲循环"
 		};
-		String [] alphabat=new String []{"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","#"};
+		String [] alphabat=new String []{"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","#"};
 		sp_local_music.setOnItemSelectedListener(this);
 		adapter = new Spinneradapter(getActivity(),img,playtext);
 		sp_local_music.setAdapter(adapter);

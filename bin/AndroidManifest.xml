@@ -7,7 +7,8 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -24,11 +25,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.weige.player.GuideUI"></activity>
-        <activity android:name="com.weige.player.MainUI"></activity>
-        <activity android:name="com.weige.player.LyricUI"></activity>
-        <service android:name="com.weige.player.fragment.PlayerService">
-        </service>
+        <activity android:name="com.weige.player.GuideUI" >
+        </activity>
+        <activity
+            android:name="com.weige.player.MainUI"
+            android:theme="@style/MainTheme" >
+        </activity>
+        <activity
+            android:name="com.weige.player.LyricUI"
+            android:theme="@style/LyricTheme" >
+        </activity>
     </application>
 
 </manifest>

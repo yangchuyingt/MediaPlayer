@@ -8,6 +8,11 @@
 package com.weige.player;
 
 public final class R {
+    public static final class anim {
+        public static final int hold=0x7f040000;
+        public static final int push_right_in=0x7f040001;
+        public static final int push_right_out=0x7f040002;
+    }
     public static final class attr {
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
@@ -21,10 +26,10 @@ containing a value of this type.
         public static final int leftPadding=0x7f010000;
     }
     public static final class color {
-        public static final int blue=0x7f050000;
-        public static final int defult_gray=0x7f050001;
-        public static final int light_gray=0x7f050002;
-        public static final int local_music_text_color=0x7f050003;
+        public static final int blue=0x7f060000;
+        public static final int defult_gray=0x7f060001;
+        public static final int light_gray=0x7f060002;
+        public static final int local_music_text_color=0x7f060003;
     }
     public static final class drawable {
         public static final int arrow_toward_right=0x7f020000;
@@ -178,115 +183,117 @@ containing a value of this type.
         public static final int skin_bg_player=0x7f020094;
         public static final int spinner_bg=0x7f020095;
         public static final int spinner_bg_pressed=0x7f020096;
-        public static final int spinnerbg_selector=0x7f020097;
-        public static final int ting_bg_normal=0x7f020098;
-        public static final int vertical_devide_line=0x7f020099;
+        public static final int spinner_down=0x7f020097;
+        public static final int spinner_up=0x7f020098;
+        public static final int spinnerbg_selector=0x7f020099;
+        public static final int ting_bg_normal=0x7f02009a;
+        public static final int vertical_devide_line=0x7f02009b;
     }
     public static final class id {
-        public static final int artist=0x7f09002a;
-        public static final int btn_guide_start_experience=0x7f090003;
-        public static final int cb_slide_menu_desktoplyric=0x7f090037;
-        public static final int cb_slide_menu_lockedlyric=0x7f090038;
-        public static final int cb_slide_menu_wifinet=0x7f090036;
-        public static final int duration=0x7f090029;
-        public static final int et_search=0x7f090053;
-        public static final int fl_content=0x7f090022;
-        public static final int fl_loacl_music=0x7f09000d;
-        public static final int fl_main=0x7f09003a;
-        public static final int ib_bar_next=0x7f090042;
-        public static final int ib_bar_play=0x7f090043;
-        public static final int ib_bar_playlist_queue=0x7f090041;
-        public static final int ib_default_avatar=0x7f09003c;
-        public static final int ib_ic_launcher=0x7f09001a;
-        public static final int ib_ic_main_top_chang=0x7f090026;
-        public static final int ib_ic_main_top_kan=0x7f090025;
-        public static final int ib_ic_main_top_menu=0x7f090021;
-        public static final int ib_ic_main_top_ting=0x7f090024;
-        public static final int ib_lyric_title_bar_back=0x7f09000e;
-        public static final int ib_lyric_title_bar_download=0x7f090011;
-        public static final int ib_lyric_title_bar_like=0x7f090012;
-        public static final int ib_lyric_title_bar_share=0x7f090013;
-        public static final int ib_player_next=0x7f090019;
-        public static final int ib_player_playorpause=0x7f090018;
-        public static final int ib_player_prev=0x7f090017;
-        public static final int ib_ting_search=0x7f090056;
-        public static final int iv_add_to_play_list=0x7f090045;
-        public static final int iv_del_text_ting_search=0x7f090054;
-        public static final int iv_local_music_right=0x7f09005a;
-        public static final int iv_music_lib_right=0x7f090061;
-        public static final int iv_right_top_menu=0x7f090007;
-        public static final int iv_sp_mark=0x7f09004d;
-        public static final int iv_sp_play_img=0x7f09004e;
-        public static final int ll_add=0x7f09004a;
-        public static final int ll_buttonitem=0x7f090048;
-        public static final int ll_delete=0x7f09004c;
-        public static final int ll_guide_point_group=0x7f090004;
-        public static final int ll_main_ting_search=0x7f090052;
-        public static final int ll_music_message=0x7f09004b;
-        public static final int ll_set_to_ring=0x7f090049;
-        public static final int lv_alphabet_order=0x7f09000b;
-        public static final int lv_show_song_name=0x7f09000a;
-        public static final int menu=0x7f090039;
-        public static final int menu_settings=0x7f090067;
-        public static final int rb_ic_main_top_chang=0x7f090020;
-        public static final int rb_ic_main_top_kan=0x7f09001f;
-        public static final int rb_ic_main_top_ting=0x7f09001e;
-        public static final int rb_login=0x7f09002b;
-        public static final int rb_main_ting_local_entry_download=0x7f09005d;
-        public static final int rb_main_ting_local_entry_fav=0x7f09005b;
-        public static final int rb_main_ting_local_entry_history=0x7f09005e;
-        public static final int rb_main_ting_local_entry_playlist=0x7f09005c;
-        public static final int rb_main_ting_more_fm=0x7f090062;
-        public static final int rb_main_ting_more_game=0x7f090064;
-        public static final int rb_main_ting_more_jpyy=0x7f090065;
-        public static final int rb_main_ting_more_ringtone=0x7f090063;
-        public static final int rb_more_options=0x7f090047;
-        public static final int rb_skin_change=0x7f09002c;
-        public static final int rb_slide_menu_equalizer=0x7f090032;
-        public static final int rb_slide_menu_monthlytraffic=0x7f09002e;
-        public static final int rb_slide_menu_music_scan=0x7f090033;
-        public static final int rb_slide_menu_musicalarm=0x7f090031;
-        public static final int rb_slide_menu_musichunter=0x7f090030;
-        public static final int rb_slide_menu_search=0x7f09002f;
-        public static final int rb_slide_menu_settings=0x7f090035;
-        public static final int rb_slide_menu_transfer=0x7f090034;
-        public static final int rb_slide_menu_vip=0x7f09002d;
-        public static final int rg=0x7f090051;
-        public static final int rg_bar_top=0x7f09001c;
-        public static final int rg_local_music=0x7f09000c;
-        public static final int rl_bottom=0x7f09003b;
-        public static final int rl_function=0x7f090023;
-        public static final int rl_localmusic=0x7f090057;
-        public static final int rl_main_bottom_play=0x7f09003e;
-        public static final int rl_root=0x7f090066;
-        public static final int sb_lyric=0x7f090015;
-        public static final int sb_main_bottom=0x7f09003d;
-        public static final int sp_local_music=0x7f090008;
-        public static final int sv_tab_chang=0x7f090001;
-        public static final int sv_tab_kan=0x7f090006;
-        public static final int sv_tab_ting=0x7f090050;
-        public static final int title=0x7f090028;
-        public static final int tv_alphabat=0x7f090044;
-        public static final int tv_alphabat_adapter=0x7f090000;
-        public static final int tv_bar_singer=0x7f090040;
-        public static final int tv_bar_song_name=0x7f09003f;
-        public static final int tv_local_music=0x7f090058;
-        public static final int tv_local_music_counts=0x7f090059;
-        public static final int tv_lyric_title_bar_singer=0x7f090010;
-        public static final int tv_lyric_title_bar_songname=0x7f09000f;
-        public static final int tv_main_home=0x7f090027;
-        public static final int tv_music_lib=0x7f09005f;
-        public static final int tv_music_lib_type=0x7f090060;
-        public static final int tv_select_more=0x7f090009;
-        public static final int tv_song_name=0x7f090046;
-        public static final int tv_sp_play_text=0x7f09004f;
-        public static final int tv_time_begin=0x7f090014;
-        public static final int tv_time_end=0x7f090016;
-        public static final int v_guide_selected_point=0x7f090005;
-        public static final int v_left=0x7f09001b;
-        public static final int v_right=0x7f09001d;
-        public static final int v_ting_search=0x7f090055;
-        public static final int viewpager_guide=0x7f090002;
+        public static final int artist=0x7f0a002a;
+        public static final int btn_guide_start_experience=0x7f0a0003;
+        public static final int cb_slide_menu_desktoplyric=0x7f0a0037;
+        public static final int cb_slide_menu_lockedlyric=0x7f0a0038;
+        public static final int cb_slide_menu_wifinet=0x7f0a0036;
+        public static final int duration=0x7f0a0029;
+        public static final int et_search=0x7f0a0053;
+        public static final int fl_content=0x7f0a0022;
+        public static final int fl_loacl_music=0x7f0a000d;
+        public static final int fl_main=0x7f0a003a;
+        public static final int ib_bar_next=0x7f0a0042;
+        public static final int ib_bar_play=0x7f0a0043;
+        public static final int ib_bar_playlist_queue=0x7f0a0041;
+        public static final int ib_default_avatar=0x7f0a003c;
+        public static final int ib_ic_launcher=0x7f0a001a;
+        public static final int ib_ic_main_top_chang=0x7f0a0026;
+        public static final int ib_ic_main_top_kan=0x7f0a0025;
+        public static final int ib_ic_main_top_menu=0x7f0a0021;
+        public static final int ib_ic_main_top_ting=0x7f0a0024;
+        public static final int ib_lyric_title_bar_back=0x7f0a000e;
+        public static final int ib_lyric_title_bar_download=0x7f0a0011;
+        public static final int ib_lyric_title_bar_like=0x7f0a0012;
+        public static final int ib_lyric_title_bar_share=0x7f0a0013;
+        public static final int ib_player_next=0x7f0a0019;
+        public static final int ib_player_playorpause=0x7f0a0018;
+        public static final int ib_player_prev=0x7f0a0017;
+        public static final int ib_ting_search=0x7f0a0056;
+        public static final int iv_add_to_play_list=0x7f0a0045;
+        public static final int iv_del_text_ting_search=0x7f0a0054;
+        public static final int iv_local_music_right=0x7f0a005a;
+        public static final int iv_music_lib_right=0x7f0a0061;
+        public static final int iv_right_top_menu=0x7f0a0007;
+        public static final int iv_sp_mark=0x7f0a004d;
+        public static final int iv_sp_play_img=0x7f0a004e;
+        public static final int ll_add=0x7f0a004a;
+        public static final int ll_buttonitem=0x7f0a0048;
+        public static final int ll_delete=0x7f0a004c;
+        public static final int ll_guide_point_group=0x7f0a0004;
+        public static final int ll_main_ting_search=0x7f0a0052;
+        public static final int ll_music_message=0x7f0a004b;
+        public static final int ll_set_to_ring=0x7f0a0049;
+        public static final int lv_alphabet_order=0x7f0a000b;
+        public static final int lv_show_song_name=0x7f0a000a;
+        public static final int menu=0x7f0a0039;
+        public static final int menu_settings=0x7f0a0067;
+        public static final int rb_ic_main_top_chang=0x7f0a0020;
+        public static final int rb_ic_main_top_kan=0x7f0a001f;
+        public static final int rb_ic_main_top_ting=0x7f0a001e;
+        public static final int rb_login=0x7f0a002b;
+        public static final int rb_main_ting_local_entry_download=0x7f0a005d;
+        public static final int rb_main_ting_local_entry_fav=0x7f0a005b;
+        public static final int rb_main_ting_local_entry_history=0x7f0a005e;
+        public static final int rb_main_ting_local_entry_playlist=0x7f0a005c;
+        public static final int rb_main_ting_more_fm=0x7f0a0062;
+        public static final int rb_main_ting_more_game=0x7f0a0064;
+        public static final int rb_main_ting_more_jpyy=0x7f0a0065;
+        public static final int rb_main_ting_more_ringtone=0x7f0a0063;
+        public static final int rb_more_options=0x7f0a0047;
+        public static final int rb_skin_change=0x7f0a002c;
+        public static final int rb_slide_menu_equalizer=0x7f0a0032;
+        public static final int rb_slide_menu_monthlytraffic=0x7f0a002e;
+        public static final int rb_slide_menu_music_scan=0x7f0a0033;
+        public static final int rb_slide_menu_musicalarm=0x7f0a0031;
+        public static final int rb_slide_menu_musichunter=0x7f0a0030;
+        public static final int rb_slide_menu_search=0x7f0a002f;
+        public static final int rb_slide_menu_settings=0x7f0a0035;
+        public static final int rb_slide_menu_transfer=0x7f0a0034;
+        public static final int rb_slide_menu_vip=0x7f0a002d;
+        public static final int rg=0x7f0a0051;
+        public static final int rg_bar_top=0x7f0a001c;
+        public static final int rg_local_music=0x7f0a000c;
+        public static final int rl_bottom=0x7f0a003b;
+        public static final int rl_function=0x7f0a0023;
+        public static final int rl_localmusic=0x7f0a0057;
+        public static final int rl_main_bottom_play=0x7f0a003e;
+        public static final int rl_root=0x7f0a0066;
+        public static final int sb_lyric=0x7f0a0015;
+        public static final int sb_main_bottom=0x7f0a003d;
+        public static final int sp_local_music=0x7f0a0008;
+        public static final int sv_tab_chang=0x7f0a0001;
+        public static final int sv_tab_kan=0x7f0a0006;
+        public static final int sv_tab_ting=0x7f0a0050;
+        public static final int title=0x7f0a0028;
+        public static final int tv_alphabat=0x7f0a0044;
+        public static final int tv_alphabat_adapter=0x7f0a0000;
+        public static final int tv_bar_singer=0x7f0a0040;
+        public static final int tv_bar_song_name=0x7f0a003f;
+        public static final int tv_local_music=0x7f0a0058;
+        public static final int tv_local_music_counts=0x7f0a0059;
+        public static final int tv_lyric_title_bar_singer=0x7f0a0010;
+        public static final int tv_lyric_title_bar_songname=0x7f0a000f;
+        public static final int tv_main_home=0x7f0a0027;
+        public static final int tv_music_lib=0x7f0a005f;
+        public static final int tv_music_lib_type=0x7f0a0060;
+        public static final int tv_select_more=0x7f0a0009;
+        public static final int tv_song_name=0x7f0a0046;
+        public static final int tv_sp_play_text=0x7f0a004f;
+        public static final int tv_time_begin=0x7f0a0014;
+        public static final int tv_time_end=0x7f0a0016;
+        public static final int v_guide_selected_point=0x7f0a0005;
+        public static final int v_left=0x7f0a001b;
+        public static final int v_right=0x7f0a001d;
+        public static final int v_ting_search=0x7f0a0055;
+        public static final int viewpager_guide=0x7f0a0002;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -295,44 +302,49 @@ containing a value of this type.
         public static final int guide=0x7f030003;
         public static final int kan=0x7f030004;
         public static final int local_header=0x7f030005;
-        public static final int local_music_single_song=0x7f030006;
-        public static final int localmusic=0x7f030007;
-        public static final int lyric=0x7f030008;
-        public static final int main=0x7f030009;
-        public static final int main_home=0x7f03000a;
-        public static final int menu=0x7f03000b;
-        public static final int music_item=0x7f03000c;
-        public static final int right_menu=0x7f03000d;
-        public static final int root=0x7f03000e;
-        public static final int showmusicadapterview=0x7f03000f;
-        public static final int spinneradapterview=0x7f030010;
-        public static final int tab_chang=0x7f030011;
-        public static final int tab_kan=0x7f030012;
-        public static final int tab_ting=0x7f030013;
-        public static final int text=0x7f030014;
-        public static final int ting=0x7f030015;
-        public static final int welcome=0x7f030016;
+        public static final int local_music_album=0x7f030006;
+        public static final int local_music_folder=0x7f030007;
+        public static final int local_music_singer=0x7f030008;
+        public static final int local_music_single_song=0x7f030009;
+        public static final int localmusic=0x7f03000a;
+        public static final int lyric=0x7f03000b;
+        public static final int main=0x7f03000c;
+        public static final int main_home=0x7f03000d;
+        public static final int menu=0x7f03000e;
+        public static final int music_item=0x7f03000f;
+        public static final int right_menu=0x7f030010;
+        public static final int root=0x7f030011;
+        public static final int showmusicadapterview=0x7f030012;
+        public static final int spinneradapterview=0x7f030013;
+        public static final int tab_chang=0x7f030014;
+        public static final int tab_kan=0x7f030015;
+        public static final int tab_ting=0x7f030016;
+        public static final int text=0x7f030017;
+        public static final int ting=0x7f030018;
+        public static final int welcome=0x7f030019;
     }
     public static final class menu {
-        public static final int activity_main=0x7f080000;
+        public static final int activity_main=0x7f090000;
     }
     public static final class raw {
-        public static final int login=0x7f040000;
+        public static final int login=0x7f050000;
     }
     public static final class string {
-        public static final int app_name=0x7f060000;
-        public static final int hello_world=0x7f060002;
-        public static final int menu_settings=0x7f060001;
+        public static final int app_name=0x7f070000;
+        public static final int hello_world=0x7f070002;
+        public static final int menu_settings=0x7f070001;
     }
     public static final class style {
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+
     
 
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
+
         
 
         Base application theme for API 11+. This theme completely replaces
@@ -346,15 +358,19 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f070000;
+        public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f070001;
-        public static final int main_ting_local_entry_style=0x7f070004;
-        public static final int main_ting_more_style=0x7f070005;
-        public static final int main_top_bar_style=0x7f070002;
-        public static final int menu_tab_style=0x7f070003;
+        public static final int AppTheme=0x7f080001;
+        public static final int LyricTheme=0x7f080008;
+        public static final int LyricUI=0x7f080006;
+        public static final int MainTheme=0x7f080009;
+        public static final int MainUI=0x7f080007;
+        public static final int main_ting_local_entry_style=0x7f080004;
+        public static final int main_ting_more_style=0x7f080005;
+        public static final int main_top_bar_style=0x7f080002;
+        public static final int menu_tab_style=0x7f080003;
     }
     public static final class styleable {
         /** Attributes that can be used with a SlidingMenu.
