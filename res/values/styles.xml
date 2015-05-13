@@ -2,13 +2,13 @@
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
         -->
     </style>
 
@@ -16,7 +16,7 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
-    
+
     <style name="main_top_bar_style">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">fill_parent</item>
@@ -25,7 +25,7 @@
         <item name="android:button">@null</item>
         <item name="android:gravity">center_horizontal</item>
     </style>
-    
+
     <style name="menu_tab_style">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">fill_parent</item>
@@ -39,7 +39,7 @@
         <item name="android:singleLine">true</item>
         <item name="android:background">@android:color/transparent</item>
     </style>
-    
+
     <style name="main_ting_local_entry_style">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
@@ -53,7 +53,7 @@
         <item name="android:singleLine">true</item>
         <item name="android:background">@android:color/transparent</item>
     </style>
-    
+
     <style name="main_ting_more_style">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
@@ -66,6 +66,19 @@
         <item name="android:textSize">14sp</item>
         <item name="android:singleLine">true</item>
         <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="LyricUI" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/push_right_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/hold</item>
+        <item name="android:activityCloseEnterAnimation">@anim/hold</item>
+        <item name="android:activityCloseExitAnimation">@anim/hold</item>
+    </style>
+    <style name="MainUI" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/hold</item>
+        <item name="android:activityOpenExitAnimation">@anim/hold</item>
+        <item name="android:activityCloseEnterAnimation">@anim/hold</item>
+        <item name="android:activityCloseExitAnimation">@anim/push_right_out</item>
     </style>
 
 </resources>

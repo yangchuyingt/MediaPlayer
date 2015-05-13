@@ -22,15 +22,15 @@
            android:layout_height="wrap_content"
            android:text="多选"
            android:layout_centerVertical="true"
-           android:textSize="17sp"
+           android:textSize="15sp"
            android:layout_marginRight="20dp"
            android:layout_alignParentRight="true"/>
        <ImageView 
-           android:layout_width="1dp"
+           android:layout_width="0.5dp"
            android:layout_height="match_parent"
            android:layout_marginTop="10dp"
            android:layout_marginBottom="10dp"
-           android:layout_marginRight="25dp"
+           android:layout_marginRight="20dp"
            android:background="#a0a3a0"
            android:layout_toLeftOf="@id/tv_select_more"/>
     </RelativeLayout>
@@ -54,10 +54,11 @@
              android:layout_height="wrap_content">
          </ListView>
          <ListView 
-             android:layout_marginLeft="10dp"
+             android:layout_marginLeft="5dp"
              android:id="@+id/lv_alphabet_order"
              android:layout_width="30dp"
              android:divider="@null"
+             android:scrollbars="none"
              android:layout_gravity="center_horizontal"
              android:layout_height="wrap_content">
          </ListView>
