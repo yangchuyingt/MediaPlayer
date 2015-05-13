@@ -51,7 +51,9 @@ public class MainFragment extends Fragment implements OnClickListener {
 		ft.replace(R.id.fl_content, mTing);
 		ft.commit();
 	}
-
+    public TingFragment getmTingFragment(){
+    	return mTing;
+    }
 	@Override
 	public void onClick(View v) {
 		FragmentManager fm = getActivity().getSupportFragmentManager();

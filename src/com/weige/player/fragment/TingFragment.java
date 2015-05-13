@@ -22,6 +22,7 @@ public class TingFragment extends Fragment {
 	private ImageView ivDelete;
 	private EditText etSearch;
 	private RelativeLayout rlLocalMusic;
+	private LocalMusicFragment localmusicFragment;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,15 +71,21 @@ public class TingFragment extends Fragment {
 		
 		rlLocalMusic.setOnClickListener(new OnClickListener() {
 			
+			
+
 			@Override
 			public void onClick(View v) {
 				FragmentManager fm = getActivity().getSupportFragmentManager();
 				FragmentTransaction ft = fm.beginTransaction();
 				ft.addToBackStack(null);
-				ft.replace(R.id.fl_main, new LocalMusicFragment());
+				localmusicFragment=new LocalMusicFragment();
+				ft.replace(R.id.fl_main,localmusicFragment );
 				ft.commit();
 			}
 		});
+	}
+	public LocalMusicFragment getlocalMusicFragment(){
+		return localmusicFragment;
 	}
 }
 	
