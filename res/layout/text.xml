@@ -121,7 +121,7 @@
             android:focusable="true"
             android:maxHeight="2dp"
             android:minHeight="2dp"
-            android:progressDrawable="@drawable/po_seekbar"
+            android:progressDrawable="@drawable/root_seekbar"
             android:thumb="@drawable/ic_main_bottom_play_bar" />
 
         <RelativeLayout
