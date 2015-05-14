@@ -110,13 +110,15 @@ public class SlidingMenu extends HorizontalScrollView {
 	@Override
 	public boolean onInterceptTouchEvent(MotionEvent ev) {
 		switch (ev.getAction()) {
-		case MotionEvent.ACTION_DOWN:
+		case MotionEvent.ACTION_MOVE:
 			int downx = (int) ev.getRawX();
 			int downy = (int) ev.getRawY();
 			if (getrect().contains(downx, downy)) {
 
 				return false;
 			}
+		
+			
 			break;
 
 		default:
@@ -153,7 +155,7 @@ public class SlidingMenu extends HorizontalScrollView {
 			super.onTouchEvent(ev);
 		}
 		switch (action) {
-		case MotionEvent.ACTION_DOWN:  
+		case MotionEvent.ACTION_DOWN: 
             break;  
         case MotionEvent.ACTION_MOVE: 
         	break;

@@ -3,12 +3,14 @@ package com.weige.player.fragment;
 import java.util.ArrayList;
 
 import com.weige.player.R;
+import com.weige.player.adapter.MusicShowAdapter;
 import com.weige.player.adapter.Spinneradapter;
 import com.weige.player.localmusicfragment.AlbumFragment;
 import com.weige.player.localmusicfragment.FolderFragment;
 import com.weige.player.localmusicfragment.OneSongFragment;
 import com.weige.player.localmusicfragment.SingerFragment;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -76,6 +78,7 @@ public class LocalMusicFragment extends Fragment implements OnCheckedChangeListe
 
 	@Override
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
+		
 		setcurrentfragment(checkedId);
 		
 	}
@@ -86,7 +89,9 @@ public class LocalMusicFragment extends Fragment implements OnCheckedChangeListe
 		ft.commit();
    }
   
-
+ public MusicShowAdapter getMediaPlayeradapter(){
+	 return ((OneSongFragment)fragmentlist.get(0)).getmediaPlayeradapter();
+ } 
 	
 
 }

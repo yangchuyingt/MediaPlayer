@@ -1,6 +1,7 @@
 package com.weige.player.localmusicfragment;
 
 import android.database.Cursor;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
@@ -8,20 +9,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.weige.player.R;
 import com.weige.player.adapter.AlphabatOrderAdapter;
 import com.weige.player.adapter.MusicShowAdapter;
 import com.weige.player.adapter.Spinneradapter;
 
-public class OneSongFragment extends Fragment implements OnItemSelectedListener {
+public class OneSongFragment extends Fragment implements OnItemSelectedListener, OnItemClickListener {
      private Spinner sp_local_music;
 	private Spinneradapter adapter;
 	private ListView lv_show_song_name;
 	private ListView lv_alphabet_order;
+	private MusicShowAdapter adapter2;
 
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,8 +54,9 @@ public class OneSongFragment extends Fragment implements OnItemSelectedListener 
 		Cursor cursor = getActivity().getContentResolver().query(  
 			       MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null, null,  
 			       MediaStore.Audio.Media.DEFAULT_SORT_ORDER); 
-		MusicShowAdapter adapter =new MusicShowAdapter(getActivity(), cursor);
-		lv_show_song_name.setAdapter(adapter);
+		adapter2 = new MusicShowAdapter(getActivity(), cursor);
+		lv_show_song_name.setAdapter(adapter2);
+		lv_alphabet_order.setOnItemClickListener(this);
 	}
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int position,
@@ -64,4 +69,16 @@ public class OneSongFragment extends Fragment implements OnItemSelectedListener 
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
+		view.setBackgroundColor(0xeeeeee);
+		//Toast.makeText(getActivity(), position, 0).show();
+		System.out.println("position"+position);
+		
+	}
+	public MusicShowAdapter getmediaPlayeradapter(){
+		return adapter2;
+	}
+	
 }

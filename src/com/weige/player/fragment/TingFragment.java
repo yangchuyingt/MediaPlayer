@@ -22,6 +22,7 @@ public class TingFragment extends Fragment {
 	private ImageView ivDelete;
 	private EditText etSearch;
 	private RelativeLayout rlLocalMusic;
+	private LocalMusicFragment localmusicFragment;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,25 +30,27 @@ public class TingFragment extends Fragment {
 		tingView = inflater.inflate(R.layout.ting, container, false);
 		return tingView;
 	}
-	
+
 	private void findViewById() {
-		ivDelete = (ImageView) tingView.findViewById(R.id.iv_del_text_ting_search);
+		ivDelete = (ImageView) tingView
+				.findViewById(R.id.iv_del_text_ting_search);
 		etSearch = (EditText) tingView.findViewById(R.id.et_search);
-		rlLocalMusic = (RelativeLayout) tingView.findViewById(R.id.rl_localmusic);
+		rlLocalMusic = (RelativeLayout) tingView
+				.findViewById(R.id.rl_localmusic);
 	}
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		
+
 		findViewById();
-		
+
 		ivDelete.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				etSearch.setText("");
 			}
 		});
-		
+
 		etSearch.addTextChangedListener(new TextWatcher() {
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
@@ -67,18 +70,22 @@ public class TingFragment extends Fragment {
 				}
 			}
 		});
-		
+
 		rlLocalMusic.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				FragmentManager fm = getActivity().getSupportFragmentManager();
 				FragmentTransaction ft = fm.beginTransaction();
 				ft.addToBackStack(null);
-				ft.replace(R.id.fl_main, new LocalMusicFragment());
+				localmusicFragment = new LocalMusicFragment();
+				ft.replace(R.id.fl_main, localmusicFragment);
 				ft.commit();
 			}
 		});
 	}
+
+	public LocalMusicFragment getlocalMusicFragment() {
+		return localmusicFragment;
+	}
 }
-	
