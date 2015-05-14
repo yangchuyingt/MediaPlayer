@@ -95,7 +95,7 @@ public class MusicShowAdapter extends CursorAdapter {
 		isplayingmusic = false;
 	}
 
-	public void playpase() {
+	public void playpause() {
 		player.pause();
 		isplayingmusic = false;
 	}

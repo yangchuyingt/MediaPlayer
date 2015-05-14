@@ -83,7 +83,7 @@ public class MainUI extends FragmentActivity implements OnClickListener {
 			mediaPlayeradapter = mMain.getmTingFragment()
 					.getlocalMusicFragment().getMediaPlayeradapter();
 			if (mediaPlayeradapter.isplayingmusic()) {
-				mediaPlayeradapter.playpase();
+				mediaPlayeradapter.playpause();
 				ib_bar_play
 						.setBackgroundResource(R.drawable.ic_main_playing_bar_play_selector);
 			} else {
