@@ -10,9 +10,11 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -23,18 +25,21 @@ public class TingFragment extends Fragment {
 	private EditText etSearch;
 	private RelativeLayout rlLocalMusic;
 	private LocalMusicFragment localmusicFragment;
+	private ImageButton ibSearch;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		tingView = inflater.inflate(R.layout.ting, container, false);
+		initView();
 		return tingView;
 	}
 
-	private void findViewById() {
+	private void initView() {
 		ivDelete = (ImageView) tingView
 				.findViewById(R.id.iv_del_text_ting_search);
 		etSearch = (EditText) tingView.findViewById(R.id.et_search);
+		ibSearch = (ImageButton) tingView.findViewById(R.id.ib_ting_search);
 		rlLocalMusic = (RelativeLayout) tingView
 				.findViewById(R.id.rl_localmusic);
 	}
@@ -42,12 +47,26 @@ public class TingFragment extends Fragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-
-		findViewById();
-
 		ivDelete.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				etSearch.setText("");
+			}
+		});
+
+		etSearch.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				EditText text = (EditText) v;
+				String hint;
+				if (hasFocus) {
+					hint = text.getHint().toString();
+					text.setTag(hint);
+					text.setHint("");
+				} else {
+					hint = text.getTag().toString();
+					text.setHint(hint);
+				}
 			}
 		});
 
@@ -88,4 +107,5 @@ public class TingFragment extends Fragment {
 	public LocalMusicFragment getlocalMusicFragment() {
 		return localmusicFragment;
 	}
+
 }
