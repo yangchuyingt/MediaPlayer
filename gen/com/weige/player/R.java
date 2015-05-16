@@ -10,10 +10,14 @@ package com.weige.player;
 public final class R {
     public static final class anim {
         public static final int hold=0x7f040000;
-        public static final int lyric_right_in=0x7f040001;
-        public static final int lyric_right_out=0x7f040002;
-        public static final int main_in=0x7f040003;
-        public static final int welcome_out=0x7f040004;
+        public static final int localmusicfragment_left_enter=0x7f040001;
+        public static final int localmusicfragment_left_exit=0x7f040002;
+        public static final int localmusicfragment_pop_left_enter=0x7f040003;
+        public static final int localmusicfragment_pop_left_exit=0x7f040004;
+        public static final int lyric_right_in=0x7f040005;
+        public static final int lyric_right_out=0x7f040006;
+        public static final int main_in=0x7f040007;
+        public static final int welcome_out=0x7f040008;
     }
     public static final class attr {
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".

@@ -96,6 +96,11 @@ public class TingFragment extends Fragment {
 			public void onClick(View v) {
 				FragmentManager fm = getActivity().getSupportFragmentManager();
 				FragmentTransaction ft = fm.beginTransaction();
+				ft.setCustomAnimations(
+						R.anim.localmusicfragment_left_enter,
+						R.anim.localmusicfragment_left_exit,
+						R.anim.localmusicfragment_pop_left_enter,
+						R.anim.localmusicfragment_pop_left_exit);
 				ft.addToBackStack(null);
 				localmusicFragment = new LocalMusicFragment();
 				ft.replace(R.id.fl_main, localmusicFragment);
