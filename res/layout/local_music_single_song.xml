@@ -2,66 +2,74 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
-    android:background="@android:color/white">
-    <RelativeLayout 
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp">
-       <Spinner 
-           android:layout_marginLeft="25dp"
-           android:id="@+id/sp_local_music"
-           android:layout_centerVertical="true"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:background="@drawable/spinnerbg_selector"
-           style="@null"
-           android:spinnerMode="dropdown"/>
-       <TextView 
-           android:id="@+id/tv_select_more"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="多选"
-           android:layout_centerVertical="true"
-           android:textSize="15sp"
-           android:layout_marginRight="20dp"
-           android:layout_alignParentRight="true"/>
-       <ImageView 
-           android:layout_width="0.5dp"
-           android:layout_height="match_parent"
-           android:layout_marginTop="10dp"
-           android:layout_marginBottom="10dp"
-           android:layout_marginRight="20dp"
-           android:background="#a0a3a0"
-           android:layout_toLeftOf="@id/tv_select_more"/>
+        android:layout_height="45dp" >
+
+        <Spinner
+            android:id="@+id/sp_local_music"
+            style="@null"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="25dp"
+            android:background="@drawable/spinnerbg_selector"
+            android:spinnerMode="dropdown" />
+
+        <TextView
+            android:id="@+id/tv_select_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:text="多选"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@id/tv_select_more"
+            android:background="#a0a3a0" />
     </RelativeLayout>
-     <ImageView 
+
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="7dp"
-        android:background="@drawable/shadow_bottom"/>
-     <LinearLayout 
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         android:orientation="horizontal"
-         >
-         <ListView 
-             android:id="@+id/lv_show_song_name"
-             android:layout_width="0dp"
-             android:layout_weight="1"
-             android:divider="@null"
-             android:scrollbarFadeDuration="0"
-             android:fadeScrollbars="false"
-             android:scrollbars="none"
-             android:layout_height="wrap_content">
-         </ListView>
-         <ListView 
-             android:layout_marginLeft="5dp"
-             android:id="@+id/lv_alphabet_order"
-             android:layout_width="30dp"
-             android:divider="@null"
-             android:scrollbars="none"
-             android:layout_gravity="center_horizontal"
-             android:layout_height="wrap_content">
-         </ListView>
-     </LinearLayout>
-     
+        android:background="@drawable/shadow_bottom" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" >
+
+        <ListView
+            android:id="@+id/lv_show_song_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:divider="@null"
+            android:fadeScrollbars="false"
+            android:scrollbarFadeDuration="0"
+            android:scrollbars="none" >
+        </ListView>
+
+        <ListView
+            android:id="@+id/lv_alphabet_order"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="4dp"
+            android:divider="@null"
+            android:scrollbars="none" >
+        </ListView>
+    </LinearLayout>
+
 </LinearLayout>

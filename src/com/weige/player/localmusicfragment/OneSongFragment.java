@@ -12,15 +12,18 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ListView;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.weige.player.MainUI;
 import com.weige.player.R;
 import com.weige.player.adapter.AlphabatOrderAdapter;
 import com.weige.player.adapter.MusicShowAdapter;
 import com.weige.player.adapter.Spinneradapter;
+import com.weige.player.listener.CurrentmusicTimeListener;
 
-public class OneSongFragment extends Fragment implements OnItemSelectedListener, OnItemClickListener {
+public class OneSongFragment extends Fragment implements OnItemSelectedListener, OnItemClickListener, CurrentmusicTimeListener {
      private Spinner sp_local_music;
 	private Spinneradapter adapter;
 	private ListView lv_show_song_name;
@@ -55,6 +58,7 @@ public class OneSongFragment extends Fragment implements OnItemSelectedListener,
 			       MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null, null,  
 			       MediaStore.Audio.Media.DEFAULT_SORT_ORDER); 
 		adapter2 = new MusicShowAdapter(getActivity(), cursor);
+		adapter2.setOnCurrentmusicListener(this);
 		lv_show_song_name.setAdapter(adapter2);
 		lv_alphabet_order.setOnItemClickListener(this);
 	}
@@ -79,6 +83,13 @@ public class OneSongFragment extends Fragment implements OnItemSelectedListener,
 	}
 	public MusicShowAdapter getmediaPlayeradapter(){
 		return adapter2;
+	}
+	@Override
+	public int getcurrentmusictime(int time) {
+		SeekBar seekBar = MainUI.getmusicbar();
+		seekBar.setProgress(time);
+		System.out.println(time);
+		return 0;
 	}
 	
 }

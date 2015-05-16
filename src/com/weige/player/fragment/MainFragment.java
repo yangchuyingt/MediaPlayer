@@ -20,6 +20,7 @@ public class MainFragment extends Fragment implements OnClickListener {
 	private TingFragment mTing;
 	private KanFragment mKan;
 	private ChangFragment mChang;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {

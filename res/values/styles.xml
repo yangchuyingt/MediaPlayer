@@ -69,16 +69,16 @@
     </style>
 
     <style name="LyricUI" parent="@android:style/Animation.Activity">
-        <item name="android:activityOpenEnterAnimation">@anim/push_right_in</item>
+        <item name="android:activityOpenEnterAnimation">@anim/lyric_right_in</item>
         <item name="android:activityOpenExitAnimation">@anim/hold</item>
         <item name="android:activityCloseEnterAnimation">@anim/hold</item>
         <item name="android:activityCloseExitAnimation">@anim/hold</item>
     </style>
     <style name="MainUI" parent="@android:style/Animation.Activity">
-        <item name="android:activityOpenEnterAnimation">@anim/hold</item>
-        <item name="android:activityOpenExitAnimation">@anim/hold</item>
+        <item name="android:activityOpenEnterAnimation">@anim/main_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/welcome_out</item>
         <item name="android:activityCloseEnterAnimation">@anim/hold</item>
-        <item name="android:activityCloseExitAnimation">@anim/push_right_out</item>
+        <item name="android:activityCloseExitAnimation">@anim/lyric_right_out</item>
     </style>
 
 </resources>

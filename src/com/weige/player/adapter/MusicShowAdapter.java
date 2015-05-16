@@ -4,11 +4,13 @@ import java.io.IOException;
 
 import com.weige.player.MainUI;
 import com.weige.player.R;
+import com.weige.player.listener.CurrentmusicTimeListener;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.support.v4.widget.CursorAdapter;
 import android.text.TextUtils;
@@ -26,15 +28,17 @@ public class MusicShowAdapter extends CursorAdapter {
 	private MediaPlayer player;
 	private Cursor currentcursor;
 	private Context context;
-	private boolean isplayingmusic=false;
-
+	private boolean isplayingmusic = false;
+	private int pause;
+    private CurrentmusicTimeListener listener;
+	private Thread thread;
 	public MusicShowAdapter(Context context, Cursor c) {
 		super(context, c);
-		this.context =context;
-		if(c.moveToFirst()){
-			
-			currentcursor=c;
-			//此处还存在bug需要修改;
+		this.context = context;
+		if (c.moveToFirst()) {
+
+			currentcursor = c;
+			// 此处还存在bug需要修改;
 		}
 	}
 
@@ -45,58 +49,129 @@ public class MusicShowAdapter extends CursorAdapter {
 				.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME));
 		final String url = c.getString(c
 				.getColumnIndex(MediaStore.Audio.Media.DATA));
-
+		final String songname = c.getString(c
+				.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME));
+		final String singer = c.getString(c
+				.getColumnIndex(MediaStore.Audio.Media.ARTIST));
+        
 		viewholder.tv_song_name.setText(name);
 		viewholder.tv_song_name.setOnClickListener(new OnClickListener() {
-
 
 			@Override
 			public void onClick(View v) {
 				playMusic(context, url);
-				currentcursor=c; 
-				MainUI.getplaybotton().setBackgroundResource(R.drawable.btn_down_stop);
+				currentcursor = c;
+				MainUI.getplaybutton().setBackgroundResource(
+						R.drawable.ic_main_playing_bar_pause_selector);
 				// Toast.makeText(context, "play !", 0).show();
+				MainUI.getmusicbar().setMax(getmusictime());
+				MainUI.getsongnameview().setText(songname);
+				MainUI.getsingerview().setText(singer);
+				System.out.println("maxtime:"+getmusictime());
 			}
 
-			
 		});
 
+	} 
+	public int getmusictime(Cursor c){
+		return c.getInt(c.getColumnIndex(MediaStore.Audio.Media.DURATION));
 	}
+	public int getmusictime(){
+		return currentcursor.getInt(currentcursor.getColumnIndex(MediaStore.Audio.Media.DURATION));
+	}
+	public String getmusicname(){
+		return currentcursor.getString(currentcursor
+				.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME));
+	}
+	public String getsinger(){
+		return currentcursor.getString(currentcursor
+				.getColumnIndex(MediaStore.Audio.Media.ARTIST));
+	}
+
 	private void playMusic(final Context context, final String url) {
 		if (player != null) {
-			player.stop();
+			player.release();
 			// Toast.makeText(context, "stop!", 0).show();
 		}
 		player = MediaPlayer.create(context, Uri.parse(url));
 		player.start();
-		isplayingmusic=true;
+		isplayingmusic = true;
+		setprogress();
+		MainUI.getplaybutton().setBackgroundResource(
+				R.drawable.ic_main_playing_bar_pause_selector);
+		MainUI.getmusicbar().setMax(getmusictime());
+		MainUI.getsongnameview().setText(getmusicname());
+		MainUI.getsingerview().setText(getsinger());
 	}
-	public void playMusic(){
+
+	public void playMusic() {
 		String url = currentcursor.getString(currentcursor
 				.getColumnIndex(MediaStore.Audio.Media.DATA));
 		playMusic(context, url);
 	}
+
 	public MediaPlayer getplayer() {
 		return player;
 	}
-	public void playnext(){
+
+	public void playnext() {
 		currentcursor.moveToNext();
 		String url = currentcursor.getString(currentcursor
 				.getColumnIndex(MediaStore.Audio.Media.DATA));
 		playMusic(context, url);
-		
+
 	}
-	public void playstop(){
+
+	public void playstop() {
 		player.stop();
-		isplayingmusic=false;
+		thread.stop();
+		thread.destroy();
+		isplayingmusic = false;
 	}
-	public void playpase(){
+
+	public void playpause() {
 		player.pause();
-		isplayingmusic=false;
+		pause = player.getCurrentPosition();
+		isplayingmusic = false;
 	}
-    public boolean isplayingmusic(){
-    	return isplayingmusic;
+
+	public boolean isplayingmusic() {
+		return isplayingmusic;
+	}
+    public int playresume(){
+    	if(player!=null){
+    	player.seekTo(pause);
+    	player.start();
+    	setprogress();
+    	isplayingmusic=true;
+    	}else{
+    		playMusic();
+    		return 0;
+    	}
+    	return pause;
     }
+    public void setOnCurrentmusicListener(CurrentmusicTimeListener listener){
+    	this.listener=listener;
+    }
+     private void setprogress(){
+    	 thread = new Thread(){
+    		 public void run() {
+    			 int time=-1;
+    			while (true) {
+					time=player.getCurrentPosition();
+					SystemClock.sleep(1000);
+					listener.getcurrentmusictime(time);
+					if (getmusictime(currentcursor)>time) {
+						continue;
+					}else{
+						this.stop();
+						this.destroy();
+					}
+				}
+    		 };
+    	 };
+    	 thread.start();
+     }
 	@Override
 	public View newView(Context arg0, Cursor arg1, ViewGroup arg2) {
 		View view = null;
