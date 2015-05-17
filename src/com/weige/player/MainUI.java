@@ -52,7 +52,12 @@ public class MainUI extends FragmentActivity implements OnClickListener {
 		mbottom_bar.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				startActivity(new Intent(MainUI.this, LyricUI.class));
+				mediaPlayeradapter = mMain.getmTingFragment()
+						.getlocalMusicFragment().getMediaPlayeradapter();
+				;
+				Intent intent =new Intent(MainUI.this, LyricUI.class);
+				intent.putExtra("musicname", mediaPlayeradapter.getmusicname());
+				startActivity(intent);
 				
 			}
 		});
