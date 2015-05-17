@@ -30,8 +30,9 @@ public class MusicShowAdapter extends CursorAdapter {
 	private Context context;
 	private boolean isplayingmusic = false;
 	private int pause;
-    private CurrentmusicTimeListener listener;
+	private CurrentmusicTimeListener listener;
 	private Thread thread;
+
 	public MusicShowAdapter(Context context, Cursor c) {
 		super(context, c);
 		this.context = context;
@@ -53,7 +54,9 @@ public class MusicShowAdapter extends CursorAdapter {
 				.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME));
 		final String singer = c.getString(c
 				.getColumnIndex(MediaStore.Audio.Media.ARTIST));
-        
+		final int musictime = c.getInt(c
+				.getColumnIndex(MediaStore.Audio.Media.DURATION));
+
 		viewholder.tv_song_name.setText(name);
 		viewholder.tv_song_name.setOnClickListener(new OnClickListener() {
 
@@ -64,26 +67,31 @@ public class MusicShowAdapter extends CursorAdapter {
 				MainUI.getplaybutton().setBackgroundResource(
 						R.drawable.ic_main_playing_bar_pause_selector);
 				// Toast.makeText(context, "play !", 0).show();
-				MainUI.getmusicbar().setMax(getmusictime());
+				MainUI.getmusicbar().setMax(musictime);
 				MainUI.getsongnameview().setText(songname);
 				MainUI.getsingerview().setText(singer);
-				System.out.println("maxtime:"+getmusictime());
+				System.out.println("maxtime:" + getmusictime());
 			}
 
 		});
 
-	} 
-	public int getmusictime(Cursor c){
+	}
+
+	public int getmusictime(Cursor c) {
 		return c.getInt(c.getColumnIndex(MediaStore.Audio.Media.DURATION));
 	}
-	public int getmusictime(){
-		return currentcursor.getInt(currentcursor.getColumnIndex(MediaStore.Audio.Media.DURATION));
+
+	public int getmusictime() {
+		return currentcursor.getInt(currentcursor
+				.getColumnIndex(MediaStore.Audio.Media.DURATION));
 	}
-	public String getmusicname(){
+
+	public String getmusicname() {
 		return currentcursor.getString(currentcursor
 				.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME));
 	}
-	public String getsinger(){
+
+	public String getsinger() {
 		return currentcursor.getString(currentcursor
 				.getColumnIndex(MediaStore.Audio.Media.ARTIST));
 	}
@@ -138,40 +146,46 @@ public class MusicShowAdapter extends CursorAdapter {
 	public boolean isplayingmusic() {
 		return isplayingmusic;
 	}
-    public int playresume(){
-    	if(player!=null){
-    	player.seekTo(pause);
-    	player.start();
-    	setprogress();
-    	isplayingmusic=true;
-    	}else{
-    		playMusic();
-    		return 0;
-    	}
-    	return pause;
-    }
-    public void setOnCurrentmusicListener(CurrentmusicTimeListener listener){
-    	this.listener=listener;
-    }
-     private void setprogress(){
-    	 thread = new Thread(){
-    		 public void run() {
-    			 int time=-1;
-    			while (true) {
-					time=player.getCurrentPosition();
+
+	public int playresume() {
+		if (player != null) {
+			player.seekTo(pause);
+			player.start();
+			setprogress();
+			isplayingmusic = true;
+		} else {
+			playMusic();
+			return 0;
+		}
+		return pause;
+	}
+
+	public void setOnCurrentmusicListener(CurrentmusicTimeListener listener) {
+		this.listener = listener;
+	}
+
+	private void setprogress() {
+		thread = new Thread() {
+			public void run() {
+				int time = -1;
+				while (!interrupted()) {
+					try {
+						time = player.getCurrentPosition();
+					} catch (Exception e) {
+						time = 0;
+					}
 					SystemClock.sleep(1000);
 					listener.getcurrentmusictime(time);
-					if (getmusictime(currentcursor)>time) {
-						continue;
-					}else{
-						this.stop();
-						this.destroy();
-					}
+					if (time >= getmusictime(currentcursor)) {
+						thread.interrupt();
+						
+					} 
 				}
-    		 };
-    	 };
-    	 thread.start();
-     }
+			};
+		};
+		thread.start();
+	}
+
 	@Override
 	public View newView(Context arg0, Cursor arg1, ViewGroup arg2) {
 		View view = null;

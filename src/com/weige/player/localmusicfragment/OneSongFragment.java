@@ -22,6 +22,7 @@ import com.weige.player.adapter.AlphabatOrderAdapter;
 import com.weige.player.adapter.MusicShowAdapter;
 import com.weige.player.adapter.Spinneradapter;
 import com.weige.player.listener.CurrentmusicTimeListener;
+import com.weige.player.utils.FormatHelper;
 
 public class OneSongFragment extends Fragment implements OnItemSelectedListener, OnItemClickListener, CurrentmusicTimeListener {
      private Spinner sp_local_music;
@@ -87,8 +88,9 @@ public class OneSongFragment extends Fragment implements OnItemSelectedListener,
 	@Override
 	public int getcurrentmusictime(int time) {
 		SeekBar seekBar = MainUI.getmusicbar();
+		System.out.println(FormatHelper.formatDuration(seekBar.getMax()));
 		seekBar.setProgress(time);
-		System.out.println(time);
+		System.out.println(FormatHelper.formatDuration(time));
 		return 0;
 	}
 	
