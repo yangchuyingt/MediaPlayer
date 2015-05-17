@@ -69,6 +69,7 @@
                         android:layout_below="@id/sb_main_bottom"
                         android:layout_marginLeft="8dp"
                         android:text="歌曲名"
+                        android:singleLine="true"
                         android:textColor="#000000"
                         android:textSize="16sp" />
 

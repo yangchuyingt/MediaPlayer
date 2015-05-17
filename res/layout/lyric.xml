@@ -74,13 +74,23 @@
             android:layout_height="fill_parent"
             android:gravity="center"
             android:text="点击搜索歌词"
+            android:visibility="invisible"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
+        <ListView 
+            android:id="@+id/lv_lyric"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"
+            android:background="@android:color/transparent">
+            
+        </ListView>
     </FrameLayout>
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content" 
+       >
 
         <TextView
             android:id="@+id/tv_time_begin"

@@ -41,7 +41,6 @@ public class MainUI extends FragmentActivity implements OnClickListener {
 		setContentView(R.layout.root);
 		mMenu = (SlidingMenu) findViewById(R.id.menu);
 		mbottom_bar = (RelativeLayout) findViewById(R.id.rl_bottom);
-		mbottom_bar.setOnClickListener(this);
 		iv_player_img = (ImageView) findViewById(R.id.ib_default_avatar);// 歌手图片
 		sb_main_bottom = (SeekBar) findViewById(R.id.sb_main_bottom);// 进度条
 		tv_song_name = (TextView) findViewById(R.id.tv_bar_song_name);// 歌名
@@ -102,7 +101,6 @@ public class MainUI extends FragmentActivity implements OnClickListener {
 				//musictime=mediaPlayeradapter.getmusictime();
 				//sb_main_bottom.setMax(musictime);
 				//System.out.println("maxtime:"+musictime);
-				sb_main_bottom.setProgress(0);
 			} else {
 				mediaPlayeradapter.playresume();
 				ib_bar_play.setBackgroundResource(R.drawable.ic_main_playing_bar_pause_selector);
