@@ -104,9 +104,8 @@ public class MainUI extends FragmentActivity implements OnClickListener {
 				//System.out.println("maxtime:"+musictime);
 				sb_main_bottom.setProgress(0);
 			} else {
-				int current =mediaPlayeradapter.playresume();
+				mediaPlayeradapter.playresume();
 				ib_bar_play.setBackgroundResource(R.drawable.ic_main_playing_bar_pause_selector);
-				sb_main_bottom.setProgress(current);
 			}
 			break;
 

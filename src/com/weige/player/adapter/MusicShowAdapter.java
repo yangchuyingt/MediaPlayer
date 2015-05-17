@@ -131,6 +131,7 @@ public class MusicShowAdapter extends CursorAdapter {
 
 	public void playpause() {
 		player.pause();
+		//thread.destroy();
 		pause = player.getCurrentPosition();
 		isplayingmusic = false;
 	}
@@ -158,7 +159,12 @@ public class MusicShowAdapter extends CursorAdapter {
     		 public void run() {
     			 int time=-1;
     			while (true) {
-					time=player.getCurrentPosition();
+    				try {
+						
+    					time=player.getCurrentPosition();
+					} catch (Exception e) {
+						time=0;
+					}
 					SystemClock.sleep(1000);
 					listener.getcurrentmusictime(time);
 					if (getmusictime(currentcursor)>time) {
