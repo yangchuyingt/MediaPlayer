@@ -48,7 +48,7 @@ public class OneSongFragment extends Fragment implements OnItemSelectedListener,
 	public void initdata(){
 		int[] img=new int[]{R.drawable.order_play,R.drawable.radom_play,R.drawable.cycle_play};
 		String [] playtext =new String []{
-				"顺序播放","随机播放","单曲循环"
+				"椤哄簭鎾斁","闅忔満鎾斁","鍗曟洸寰幆"
 		};
 		String [] alphabat=new String []{"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","#"};
 		sp_local_music.setOnItemSelectedListener(this);

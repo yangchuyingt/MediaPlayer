@@ -67,15 +67,15 @@ public class MusicShowAdapter extends CursorAdapter {
 				// Toast.makeText(context, "play !", 0).show();
 				MainUI.getmusicbar().setMax(musictime);
 				//System.out.println("onclik()方法中的音乐时间:"+FormatHelper.formatDuration(musictime)+",cursor 位置:"+currentposition+",歌名:"+name);
-				MainUI.getsongnameview().setText(name);
-				MainUI.getsingerview().setText(singer);
+				MainUI.getsongnameview().setText(FormatHelper.getSongname(name));
+				MainUI.getsingerview().setText(FormatHelper.getSinger(name));
 				/*MainUI.getmusicbar().setMax(getmusictime());
 				MainUI.getsongnameview().setText(getmusicname());
 				MainUI.getsingerview().setText(getsinger());*/
 			}
 
 		});
-		viewholder.tv_song_name.setText(name);
+		viewholder.tv_song_name.setText(FormatHelper.getListSongname(name));
 		
 
 	}
@@ -88,8 +88,6 @@ public class MusicShowAdapter extends CursorAdapter {
 		if(cursor.moveToPosition(currentposition)){
 		 int time =cursor.getInt(cursor
 				.getColumnIndex(MediaStore.Audio.Media.DURATION));
-		String name= cursor.getString(cursor
-					.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME));
 		 //.out.println("currentcursor的时间:"+FormatHelper.formatDuration(time) +"位置:"+cursor.getPosition()+"歌名:"+name);
 		 return time;
 		}
@@ -99,8 +97,8 @@ public class MusicShowAdapter extends CursorAdapter {
 	public String getmusicname() {
 		if(cursor.moveToPosition(currentposition)){
 			
-		return cursor.getString(cursor
-				.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME));
+		return FormatHelper.getListSongname(cursor.getString(cursor
+				.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME)));
 		}
 		return null;
 	}
@@ -108,8 +106,8 @@ public class MusicShowAdapter extends CursorAdapter {
 	public String getsinger() {
 		if(cursor.moveToPosition(currentposition)){
 			
-		return cursor.getString(cursor
-				.getColumnIndex(MediaStore.Audio.Media.ARTIST));
+		return FormatHelper.getSinger(cursor.getString(cursor
+				.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME)));
 		}
 		return null;
 	}

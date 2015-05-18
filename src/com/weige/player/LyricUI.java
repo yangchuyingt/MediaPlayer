@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.InputFilter.LengthFilter;
 import android.view.Window;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -40,15 +41,15 @@ public class LyricUI extends Activity {
 		if(musicName!=null){
 			split = musicName.split("m");
 		}
-		File file = FileUtils.readFileWithName(this,  Constants.FOLDER_NAME_PATH+split[0]+"lrc");
+		File file = FileUtils.readFileWithName(this,  Constants.FOLDER_NAME_PATH+split[0]+".lrc");
 		if(file!=null&&file.exists()){
 			String lyric=parseFile(file).trim();
 			gecis = lyric.split("\\r");
-			System.out.println("歌词的长度:"+gecis.length);
+			System.out.println("姝岃瘝闀垮害:"+gecis.length);
 			lv_lyric.setAdapter(new LyricAdapter(gecis, this));
 			
 		}else{
-			Toast.makeText(this, "没有歌词!", 1).show();
+			Toast.makeText(this, "娌℃湁姝岃瘝!", 0).show();
 		}
 	}
 	private String parseFile(File file) {
