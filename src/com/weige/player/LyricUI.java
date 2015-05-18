@@ -41,7 +41,7 @@ public class LyricUI extends Activity {
 		if(musicName!=null){
 			split = musicName.split("m");
 		}
-		File file = FileUtils.readFileWithName(this,  Constants.FOLDER_NAME_PATH+split[0]+".lrc");
+		File file = FileUtils.readFileWithName(this,  Constants.FOLDER_NAME_PATH+split[0]+"lrc");
 		if(file!=null&&file.exists()){
 			String lyric=parseFile(file).trim();
 			gecis = lyric.split("\\r");

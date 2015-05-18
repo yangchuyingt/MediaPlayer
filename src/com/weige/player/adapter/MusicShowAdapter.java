@@ -40,7 +40,7 @@ public class MusicShowAdapter extends CursorAdapter {
 		this.context = context;
 
 			cursor = c;
-			// ´Ë´¦»¹´æÔÚbugÐèÒªÐÞ¸Ä;
+			// ï¿½Ë´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½bugï¿½ï¿½Òªï¿½Þ¸ï¿½;
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class MusicShowAdapter extends CursorAdapter {
 						R.drawable.ic_main_playing_bar_pause_selector);
 				// Toast.makeText(context, "play !", 0).show();
 				MainUI.getmusicbar().setMax(musictime);
-				//System.out.println("onclik()·½·¨ÖÐµÄÒôÀÖÊ±¼ä:"+FormatHelper.formatDuration(musictime)+",cursor Î»ÖÃ:"+currentposition+",¸èÃû:"+name);
+				//System.out.println("onclik()ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½:"+FormatHelper.formatDuration(musictime)+",cursor Î»ï¿½ï¿½:"+currentposition+",ï¿½ï¿½ï¿½ï¿½:"+name);
 				MainUI.getsongnameview().setText(FormatHelper.getSongname(name));
 				MainUI.getsingerview().setText(FormatHelper.getSinger(name));
 				/*MainUI.getmusicbar().setMax(getmusictime());
@@ -88,7 +88,7 @@ public class MusicShowAdapter extends CursorAdapter {
 		if(cursor.moveToPosition(currentposition)){
 		 int time =cursor.getInt(cursor
 				.getColumnIndex(MediaStore.Audio.Media.DURATION));
-		 //.out.println("currentcursorµÄÊ±¼ä:"+FormatHelper.formatDuration(time) +"Î»ÖÃ:"+cursor.getPosition()+"¸èÃû:"+name);
+		 //.out.println("currentcursorï¿½ï¿½Ê±ï¿½ï¿½:"+FormatHelper.formatDuration(time) +"Î»ï¿½ï¿½:"+cursor.getPosition()+"ï¿½ï¿½ï¿½ï¿½:"+name);
 		 return time;
 		}
 		return 0;
@@ -97,8 +97,8 @@ public class MusicShowAdapter extends CursorAdapter {
 	public String getmusicname() {
 		if(cursor.moveToPosition(currentposition)){
 			
-		return FormatHelper.getListSongname(cursor.getString(cursor
-				.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME)));
+		return cursor.getString(cursor
+				.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME));
 		}
 		return null;
 	}
@@ -130,7 +130,7 @@ public class MusicShowAdapter extends CursorAdapter {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		//System.out.println("setprogress ·½·¨ÖÐµÄ²ÎÊý:"+getmusictime());
+		//System.out.println("setprogress ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄ²ï¿½ï¿½ï¿½:"+getmusictime());
 		setprogress(getmusictime());
 	}
 
@@ -203,14 +203,14 @@ public class MusicShowAdapter extends CursorAdapter {
 				int time = -1;
 				while (!interrupted()) {
 					try {
-						//System.out.println("setProgress()·½·¨ÖÐµÄÊ±¼ä:"+FormatHelper.formatDuration(times)+",cursorµÄÎ»ÖÃ:");
+						//System.out.println("setProgress()ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½Ê±ï¿½ï¿½:"+FormatHelper.formatDuration(times)+",cursorï¿½ï¿½Î»ï¿½ï¿½:");
 						time = player.getCurrentPosition();
 					} catch (Exception e) {
 						time = 0;
 					}
 					SystemClock.sleep(1000);
 					listener.getcurrentmusictime(time);
-				    //System.out.println("Ã»ÓÐplaynext"+"µ±Ç°²¥·ÅÊ±¼ä:"+time+",×ÜÊ±¼ä:"+times+","+(time >=times));
+				    //System.out.println("Ã»ï¿½ï¿½playnext"+"ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½:"+time+",ï¿½ï¿½Ê±ï¿½ï¿½:"+times+","+(time >=times));
 					if ( time+1000 >=times) {
 						playnext();
 						//System.out.println("playnext");
