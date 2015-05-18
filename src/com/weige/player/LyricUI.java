@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.InputFilter.LengthFilter;
 import android.view.Window;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -48,7 +49,7 @@ public class LyricUI extends Activity {
 			lv_lyric.setAdapter(new LyricAdapter(gecis, this));
 			
 		}else{
-			Toast.makeText(this, "没有歌词!", 1).show();
+			Toast.makeText(this, "没有歌词!", 0).show();
 		}
 	}
 	private String parseFile(File file) {

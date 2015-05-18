@@ -23,4 +23,24 @@ public class FormatHelper {
 		}
 		return subString;
 	}
+	
+	public static String getSinger(String name){
+		String str[] = name.split(" - ");
+		String singer = str[0];
+		return singer;
+	}
+	
+	public static String getListSongname(String name){
+		String str[] = name.split("\\.");
+		String listsongname = str[0];
+		return listsongname;
+	}
+	
+	public static String getSongname(String name){
+		String str[] = name.split(" - ");
+		String temp = str[1];
+		String str1[] = temp.split("\\.");
+		String songname = str1[0];
+		return songname;
+	}
 }
