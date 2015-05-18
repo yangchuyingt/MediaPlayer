@@ -1,7 +1,9 @@
 package com.weige.player.fragment;
 
 import com.weige.player.R;
+import com.weige.player.service.UpdateService;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -21,7 +23,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class TingFragment extends Fragment {
+public class TingFragment extends Fragment implements OnClickListener {
 
 	private View tingView;
 	private ImageView ivDelete;
@@ -55,7 +57,9 @@ public class TingFragment extends Fragment {
 		rlLocalMusic = (RelativeLayout) tingView
 				.findViewById(R.id.rl_localmusic);
 		TextView musiccount=(TextView) tingView.findViewById(R.id.tv_local_music_counts);
-		musiccount.setText(this.musiccount+"Ê×");
+		musiccount.setText(this.musiccount+"é¦–");
+		ImageButton ib_search=(ImageButton) tingView.findViewById(R.id.ib_ting_search);
+		ib_search.setOnClickListener(this);
 	}
 
 	@Override
@@ -125,6 +129,11 @@ public class TingFragment extends Fragment {
 
 	public LocalMusicFragment getlocalMusicFragment() {
 		return localmusicFragment;
+	}
+	@Override
+	public void onClick(View v) {
+	  getActivity().startService(new Intent(getActivity(), UpdateService.class));
+		
 	}
 
 }
