@@ -34,7 +34,7 @@ public class UpdateService extends Service {
 	private NotificationManager updateNotificationManager;
 	private Notification updateNotification;
 	private PendingIntent updatePendingIntent;
-	private Handler updateHandler = new  Handler(){ 
+	private Handler updateHandler = new Handler(){ 
 	    @Override
 	    public void handleMessage(Message msg) { 
 	          switch (msg.what) {
@@ -86,12 +86,12 @@ public class UpdateService extends Service {
 	    updateNotification.flags = Notification.FLAG_AUTO_CANCEL;
 	 
 	    //设置下载过程中，点击通知栏，回到主界面 
-	    Intent  updateIntent = new Intent(this, MainUI.class); 
+	    Intent updateIntent = new Intent(this, MainUI.class);
 	    updatePendingIntent = PendingIntent.getActivity(this,0,updateIntent,0); 
 	    //设置通知栏显示内容 
 	    updateNotification.icon = R.drawable.ic_launcher; 
 	    updateNotification.tickerText = "开始下载"; 
-	    updateNotification.setLatestEventInfo(this,"中团","0%",updatePendingIntent); 
+	    updateNotification.setLatestEventInfo(this,"下载音乐","0%",updatePendingIntent); 
 	    //发出通知 
 	    updateNotificationManager.notify(0,updateNotification); 
 	 

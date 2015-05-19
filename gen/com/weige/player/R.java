@@ -408,7 +408,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.weige.player:leftPadding
+          @attr name android:leftPadding
         */
         public static final int SlidingMenu_leftPadding = 0;
     };
