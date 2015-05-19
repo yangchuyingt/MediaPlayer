@@ -56,11 +56,11 @@ public class MainUI extends FragmentActivity implements OnClickListener {
 			public void onClick(View v) {
 				mediaPlayeradapter = mMain.getmTingFragment()
 						.getlocalMusicFragment().getMediaPlayeradapter();
-				;
 				Intent intent = new Intent(MainUI.this, LyricUI.class);
 				intent.putExtra("musicname", mediaPlayeradapter.getmusicname());
 				intent.putExtra("songname", FormatHelper.getSongname(mediaPlayeradapter.getmusicname()));
 				intent.putExtra("singer", FormatHelper.getSinger(mediaPlayeradapter.getmusicname()));
+				intent.putExtra("musictime", FormatHelper.formatDuration(mediaPlayeradapter.getmusictime()));
 				startActivity(intent);
 
 			}

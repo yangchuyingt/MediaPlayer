@@ -26,6 +26,7 @@ public class LyricUI extends Activity {
 
 	private ListView lv_lyric;
 	private String musicName;
+	private String musicTime;
 	private String[] gecis;
 	private TextView tv_lyric_songname;
 	private TextView tv_lyric_singer;
@@ -63,9 +64,11 @@ public class LyricUI extends Activity {
 		musicName = getIntent().getStringExtra("musicname");
 		songname = getIntent().getStringExtra("songname");
 		singer = getIntent().getStringExtra("singer");
+		musicTime = getIntent().getStringExtra("musictime");
 		
 		tv_lyric_songname.setText(songname);
 		tv_lyric_singer.setText(singer);
+		tv_time_end.setText(musicTime);
 		
 		System.out.println("musicName:" + musicName);
 		String[] split = new String[2];
