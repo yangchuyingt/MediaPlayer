@@ -1,12 +1,6 @@
 package com.weige.player;
 
-import com.weige.player.adapter.MusicShowAdapter;
-import com.weige.player.fragment.MainFragment;
-import com.weige.player.slidingmenu.SlidingMenu;
-import com.weige.player.utils.FormatHelper;
-
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -18,7 +12,14 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
+
+import com.weige.player.adapter.MusicShowAdapter;
+import com.weige.player.fragment.MainFragment;
+import com.weige.player.listener.CurrentmusicTimeListener;
+import com.weige.player.slidingmenu.SlidingMenu;
+import com.weige.player.utils.FormatHelper;
 
 public class MainUI extends FragmentActivity implements OnClickListener {
 
@@ -26,15 +27,13 @@ public class MainUI extends FragmentActivity implements OnClickListener {
 	private MainFragment mMain;
 	private RelativeLayout mbottom_bar;
 	private ImageView iv_player_img;
-	private static SeekBar sb_main_bottom;
+	private static SeekBar sb_main;
 	private static TextView tv_song_name;
 	private static TextView tv_bar_singer;
 	private ImageButton ib_playlist_queue;
 	private ImageButton ib_bar_next;
 	private static ImageButton ib_bar_play;
 	private MusicShowAdapter mediaPlayeradapter;
-
-	// private int musictime;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +43,7 @@ public class MainUI extends FragmentActivity implements OnClickListener {
 		mMenu = (SlidingMenu) findViewById(R.id.menu);
 		mbottom_bar = (RelativeLayout) findViewById(R.id.rl_bottom);
 		iv_player_img = (ImageView) findViewById(R.id.ib_default_avatar);//歌手图片
-		sb_main_bottom = (SeekBar) findViewById(R.id.sb_main_bottom);//进度条
+		sb_main = (SeekBar) findViewById(R.id.sb_main_bottom);//进度条
 		tv_song_name = (TextView) findViewById(R.id.tv_bar_song_name);//歌曲名
 		tv_bar_singer = (TextView) findViewById(R.id.tv_bar_singer);//歌手
 		ib_playlist_queue = (ImageButton) findViewById(R.id.ib_bar_playlist_queue);//播放队列
@@ -67,12 +66,13 @@ public class MainUI extends FragmentActivity implements OnClickListener {
 		});
 		ib_bar_next.setOnClickListener(this);
 		ib_bar_play.setOnClickListener(this);
+		
 		initFragment();
 		initdata();
 	}
 
 	private void initdata() {
-		// sb_main_bottom.setMax(max)
+		
 	}
 
 	private void initFragment() {
@@ -94,7 +94,7 @@ public class MainUI extends FragmentActivity implements OnClickListener {
 			mediaPlayeradapter = mMain.getmTingFragment()
 					.getlocalMusicFragment().getMediaPlayeradapter();
 			mediaPlayeradapter.playnext();
-			sb_main_bottom.setProgress(0);
+			sb_main.setProgress(0);
 
 			break;
 		case R.id.ib_bar_play:
@@ -121,7 +121,7 @@ public class MainUI extends FragmentActivity implements OnClickListener {
 	}
 
 	public static SeekBar getmusicbar() {
-		return sb_main_bottom;
+		return sb_main;
 	}
 
 	public static TextView getsongnameview() {
@@ -131,4 +131,5 @@ public class MainUI extends FragmentActivity implements OnClickListener {
 	public static TextView getsingerview() {
 		return tv_bar_singer;
 	}
+
 }

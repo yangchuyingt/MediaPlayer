@@ -122,7 +122,6 @@ public class MusicShowAdapter extends CursorAdapter {
 				R.drawable.ic_main_playing_bar_pause_selector);
 		MainUI.getmusicbar().setMax(getmusictime());
 		try {
-			
 			MainUI.getsongnameview().setText(FormatHelper.getSongname(getmusicname()));
 			MainUI.getsingerview().setText(FormatHelper.getSinger(getmusicname()));
 		} catch (Exception e) {
@@ -200,15 +199,13 @@ public class MusicShowAdapter extends CursorAdapter {
 				int time = -1;
 				while (!interrupted()) {
 					try {
-						//System.out.println("setProgress()�����е�ʱ��:"+FormatHelper.formatDuration(times)+",cursor��λ��:");
 						time = player.getCurrentPosition();
 					} catch (Exception e) {
 						time = 0;
 					}
 					SystemClock.sleep(1000);
 					listener.getcurrentmusictime(time);
-				    //System.out.println("û��playnext"+"��ǰ����ʱ��:"+time+",��ʱ��:"+times+","+(time >=times));
-					if ( time+1000 >=times) {
+					if ( time + 1000 >= times) {
 						playnext();
 						//System.out.println("playnext");
 					} 
