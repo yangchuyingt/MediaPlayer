@@ -3,6 +3,7 @@ package com.weige.player;
 import com.weige.player.adapter.MusicShowAdapter;
 import com.weige.player.fragment.MainFragment;
 import com.weige.player.slidingmenu.SlidingMenu;
+import com.weige.player.utils.FormatHelper;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -32,33 +33,36 @@ public class MainUI extends FragmentActivity implements OnClickListener {
 	private ImageButton ib_bar_next;
 	private static ImageButton ib_bar_play;
 	private MusicShowAdapter mediaPlayeradapter;
-	//private int musictime;
+
+	// private int musictime;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);// ÒÆ³ı±êÌâ
+		requestWindowFeature(Window.FEATURE_NO_TITLE);//ç§»é™¤æ ‡é¢˜
 		setContentView(R.layout.root);
 		mMenu = (SlidingMenu) findViewById(R.id.menu);
 		mbottom_bar = (RelativeLayout) findViewById(R.id.rl_bottom);
-		iv_player_img = (ImageView) findViewById(R.id.ib_default_avatar);// ¸èÊÖÍ¼Æ¬
-		sb_main_bottom = (SeekBar) findViewById(R.id.sb_main_bottom);// ½ø¶ÈÌõ
-		tv_song_name = (TextView) findViewById(R.id.tv_bar_song_name);// ¸èÃû
-		tv_bar_singer = (TextView) findViewById(R.id.tv_bar_singer);// ¸èÊÖ
-		ib_playlist_queue = (ImageButton) findViewById(R.id.ib_bar_playlist_queue);// ²¥·Å¶ÓÁĞ
-		ib_bar_next = (ImageButton) findViewById(R.id.ib_bar_next);// ÏÂÒ»Çú
-		ib_bar_play = (ImageButton) findViewById(R.id.ib_bar_play);// ²¥·Å
-		
+		iv_player_img = (ImageView) findViewById(R.id.ib_default_avatar);//æ­Œæ‰‹å›¾ç‰‡
+		sb_main_bottom = (SeekBar) findViewById(R.id.sb_main_bottom);//è¿›åº¦æ¡
+		tv_song_name = (TextView) findViewById(R.id.tv_bar_song_name);//æ­Œæ›²å
+		tv_bar_singer = (TextView) findViewById(R.id.tv_bar_singer);//æ­Œæ‰‹
+		ib_playlist_queue = (ImageButton) findViewById(R.id.ib_bar_playlist_queue);//æ’­æ”¾é˜Ÿåˆ—
+		ib_bar_next = (ImageButton) findViewById(R.id.ib_bar_next);//ä¸‹ä¸€æ›²
+		ib_bar_play = (ImageButton) findViewById(R.id.ib_bar_play);//æ’­æ”¾
+
 		mbottom_bar.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				mediaPlayeradapter = mMain.getmTingFragment()
 						.getlocalMusicFragment().getMediaPlayeradapter();
 				;
-				Intent intent =new Intent(MainUI.this, LyricUI.class);
+				Intent intent = new Intent(MainUI.this, LyricUI.class);
 				intent.putExtra("musicname", mediaPlayeradapter.getmusicname());
+				intent.putExtra("songname", FormatHelper.getSongname(mediaPlayeradapter.getmusicname()));
+				intent.putExtra("singer", FormatHelper.getSinger(mediaPlayeradapter.getmusicname()));
 				startActivity(intent);
-				
+
 			}
 		});
 		ib_bar_next.setOnClickListener(this);
@@ -68,7 +72,7 @@ public class MainUI extends FragmentActivity implements OnClickListener {
 	}
 
 	private void initdata() {
-		//sb_main_bottom.setMax(max)
+		// sb_main_bottom.setMax(max)
 	}
 
 	private void initFragment() {
@@ -82,7 +86,7 @@ public class MainUI extends FragmentActivity implements OnClickListener {
 	public void toggleMenu(View view) {
 		mMenu.toggle();
 	}
-    
+
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
@@ -90,11 +94,8 @@ public class MainUI extends FragmentActivity implements OnClickListener {
 			mediaPlayeradapter = mMain.getmTingFragment()
 					.getlocalMusicFragment().getMediaPlayeradapter();
 			mediaPlayeradapter.playnext();
-			//musictime=mediaPlayeradapter.getmusictime();
-			//sb_main_bottom.setMax(musictime);
-			//System.out.println("maxtime:"+musictime);
 			sb_main_bottom.setProgress(0);
-			
+
 			break;
 		case R.id.ib_bar_play:
 			mediaPlayeradapter = mMain.getmTingFragment()
@@ -103,12 +104,10 @@ public class MainUI extends FragmentActivity implements OnClickListener {
 				mediaPlayeradapter.playpause();
 				ib_bar_play
 						.setBackgroundResource(R.drawable.ic_main_playing_bar_play_selector);
-				//musictime=mediaPlayeradapter.getmusictime();
-				//sb_main_bottom.setMax(musictime);
-				//System.out.println("maxtime:"+musictime);
 			} else {
 				mediaPlayeradapter.playresume();
-				ib_bar_play.setBackgroundResource(R.drawable.ic_main_playing_bar_pause_selector);
+				ib_bar_play
+						.setBackgroundResource(R.drawable.ic_main_playing_bar_pause_selector);
 			}
 			break;
 
@@ -120,13 +119,16 @@ public class MainUI extends FragmentActivity implements OnClickListener {
 	public static ImageButton getplaybutton() {
 		return ib_bar_play;
 	}
-	public static SeekBar getmusicbar(){
-		return  sb_main_bottom;
+
+	public static SeekBar getmusicbar() {
+		return sb_main_bottom;
 	}
-	public static TextView getsongnameview(){
+
+	public static TextView getsongnameview() {
 		return tv_song_name;
 	}
-	public static TextView getsingerview(){
+
+	public static TextView getsingerview() {
 		return tv_bar_singer;
 	}
 }
