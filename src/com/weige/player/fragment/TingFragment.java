@@ -133,7 +133,6 @@ public class TingFragment extends Fragment implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 	  getActivity().startService(new Intent(getActivity(), UpdateService.class));
-		
 	}
 
 }

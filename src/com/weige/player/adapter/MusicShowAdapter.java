@@ -66,7 +66,6 @@ public class MusicShowAdapter extends CursorAdapter {
 						R.drawable.ic_main_playing_bar_pause_selector);
 				// Toast.makeText(context, "play !", 0).show();
 				MainUI.getmusicbar().setMax(musictime);
-				//System.out.println("onclik()�����е�����ʱ��:"+FormatHelper.formatDuration(musictime)+",cursor λ��:"+currentposition+",����:"+name);
 				MainUI.getsongnameview().setText(FormatHelper.getSongname(name));
 				MainUI.getsingerview().setText(FormatHelper.getSinger(name));
 				/*MainUI.getmusicbar().setMax(getmusictime());
@@ -88,7 +87,6 @@ public class MusicShowAdapter extends CursorAdapter {
 		if(cursor.moveToPosition(currentposition)){
 		 int time =cursor.getInt(cursor
 				.getColumnIndex(MediaStore.Audio.Media.DURATION));
-		 //.out.println("currentcursor��ʱ��:"+FormatHelper.formatDuration(time) +"λ��:"+cursor.getPosition()+"����:"+name);
 		 return time;
 		}
 		return 0;
@@ -106,8 +104,8 @@ public class MusicShowAdapter extends CursorAdapter {
 	public String getsinger() {
 		if(cursor.moveToPosition(currentposition)){
 			
-		return FormatHelper.getSinger(cursor.getString(cursor
-				.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME)));
+		return cursor.getString(cursor
+				.getColumnIndex(MediaStore.Audio.Media.ARTIST));
 		}
 		return null;
 	}
@@ -125,12 +123,11 @@ public class MusicShowAdapter extends CursorAdapter {
 		MainUI.getmusicbar().setMax(getmusictime());
 		try {
 			
-			MainUI.getsongnameview().setText(getmusicname());
-			MainUI.getsingerview().setText(getsinger());
+			MainUI.getsongnameview().setText(FormatHelper.getSongname(getmusicname()));
+			MainUI.getsingerview().setText(FormatHelper.getSinger(getmusicname()));
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		//System.out.println("setprogress �����еĲ���:"+getmusictime());
 		setprogress(getmusictime());
 	}
 

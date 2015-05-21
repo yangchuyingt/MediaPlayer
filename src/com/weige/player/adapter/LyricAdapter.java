@@ -39,7 +39,7 @@ public class LyricAdapter extends BaseAdapter {
 		convertView=View.inflate(context, R.layout.textview_adapter, null);
 		TextView  tv_liric=(TextView) convertView.findViewById(R.id.tv_liric);
 		String str=lric[position];
-		//str=str.substring(str.indexOf("]")+2);
+		str=str.substring(str.indexOf("]")+2);
 		tv_liric.setText(str);
 		return convertView;
 	}
