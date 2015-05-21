@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.InputFilter.LengthFilter;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -25,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.weige.player.adapter.LyricAdapter;
+import com.weige.player.adapter.LyricAdapter.ViewHolder;
 import com.weige.player.adapter.MusicShowAdapter;
 import com.weige.player.fragment.TingFragment;
 import com.weige.player.listener.ChangeLyricListener;
@@ -56,6 +58,7 @@ public class LyricUI extends Activity implements ChangeLyricListener {
 	private int beforposition=-1;
     Handler myHandler=new Handler(){
     	private int selector;
+		private TextView tv;
 
 		public void handleMessage(android.os.Message msg) {
     		switch (msg.what) {
@@ -63,7 +66,17 @@ public class LyricUI extends Activity implements ChangeLyricListener {
 				
 				selector = position>6?position-6:0;
 				lv_lyric.setSelection(selector);
-				if(selector==0||position>gecis.length-6){
+				 ViewHolder[] holderlist = lyricadapter.getholderlist();
+				 if( holderlist[position]!=null){
+					 
+					 holderlist[position].getTv_liric().setTextColor(android.graphics.Color.BLACK);
+					
+				 }
+				 if (beforposition!=-1&&beforposition!=position) {
+					 holderlist[beforposition].getTv_liric().setTextColor(android.graphics.Color.WHITE);
+				}
+				 beforposition=position;
+				/*if(selector==0){
 					((TextView)((LinearLayout)lv_lyric.getChildAt(position)).getChildAt(0)).setTextColor(android.graphics.Color.BLACK);
 					if(beforposition!=-1){
 						((TextView)((LinearLayout)lv_lyric.getChildAt(beforposition)).getChildAt(0)).setTextColor(android.graphics.Color.WHITE);
@@ -73,8 +86,8 @@ public class LyricUI extends Activity implements ChangeLyricListener {
 					if(beforposition!=-1){
 						((TextView)((LinearLayout)lv_lyric.getChildAt(beforposition-selector+1)).getChildAt(0)).setTextColor(android.graphics.Color.WHITE);
 					}
-				}
-				beforposition=position;
+				}*/
+				
 				break;
 
 			default:
@@ -83,6 +96,7 @@ public class LyricUI extends Activity implements ChangeLyricListener {
     	};
     };
 	private ImageButton ib_lyric_back;
+	private LyricAdapter lyricadapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -134,7 +148,8 @@ public class LyricUI extends Activity implements ChangeLyricListener {
 			gecis = lyric.split("\\n");
 			gettimtefromgecis(gecis);
 			System.out.println("歌词长度:" + gecis.length);
-			lv_lyric.setAdapter(new LyricAdapter(gecis, this));
+			lyricadapter = new LyricAdapter(gecis, this);
+			lv_lyric.setAdapter(lyricadapter);
 
 		} else {
 			Toast.makeText(this, "没有歌词!", 0).show();
@@ -182,6 +197,7 @@ public class LyricUI extends Activity implements ChangeLyricListener {
 		position = times.get(tm);
 		if(position!=null){
 			myHandler.sendEmptyMessage(CHANGECOLOR);
+			System.out.println("position"+position);
 			
 		}
 		

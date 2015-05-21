@@ -1,5 +1,6 @@
 package com.weige.player.adapter;
 
+import com.nineoldandroids.view.ViewHelper;
 import com.weige.player.R;
 
 import android.content.Context;
@@ -11,10 +12,12 @@ import android.widget.TextView;
 public class LyricAdapter extends BaseAdapter {
 	private String [] lric;
 	private Context context;
+	private ViewHolder[]  holderlist ;
 	
     public LyricAdapter(String [] lric,Context context){
     	this.lric=lric;
     	this.context=context;
+    	holderlist=new ViewHolder[lric.length];
     }
 	@Override
 	public int getCount() {
@@ -36,12 +39,38 @@ public class LyricAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		convertView=View.inflate(context, R.layout.textview_adapter, null);
-		TextView  tv_liric=(TextView) convertView.findViewById(R.id.tv_liric);
-		String str=lric[position];
-		str=str.substring(str.indexOf("]")+2);
-		tv_liric.setText(str);
+		if(convertView==null){
+			ViewHolder holder=new ViewHolder();
+			convertView=View.inflate(context, R.layout.textview_adapter, null);
+			 holder.tv_liric=(TextView) convertView.findViewById(R.id.tv_liric);
+			 convertView.setTag(holder);
+			  String str=lric[position];
+				str=str.substring(str.indexOf("]")+2);
+				holder.tv_liric.setText(str);
+				holderlist[position]=holder;
+				System.out.println("listposition:"+position);
+		}else {
+			ViewHolder holder=(ViewHolder) convertView.getTag();
+			String str=lric[position];
+			str=str.substring(str.indexOf("]")+2);
+			holder.tv_liric.setText(str);
+			holderlist[position]=holder;
+			System.out.println("listposition:"+position);
+		}
+		
 		return convertView;
 	}
+   public  class ViewHolder{
+	   TextView tv_liric;
 
+	public TextView getTv_liric() {
+		return tv_liric;
+	}
+
+
+	   
+   }
+   public ViewHolder [] getholderlist(){
+	   return holderlist;
+   }
 }

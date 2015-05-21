@@ -78,7 +78,7 @@ public class OneSongFragment extends Fragment implements OnItemSelectedListener,
 			long id) {
 		view.setBackgroundColor(0xeeeeee);
 		//Toast.makeText(getActivity(), position, 0).show();
-		System.out.println("position"+position);
+		//System.out.println("position"+position);
 		
 	}
 	public MusicShowAdapter getmediaPlayeradapter(){
@@ -87,7 +87,7 @@ public class OneSongFragment extends Fragment implements OnItemSelectedListener,
 	@Override
 	public int getcurrentmusictime(final int time) {
 		SeekBar seekBar = MainUI.getmusicbar();
-		System.out.println((seekBar.getMax()));
+	//	System.out.println((seekBar.getMax()));
 		seekBar.setProgress(time);
 		//System.out.println(FormatHelper.formatDuration(time));
 		seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
@@ -105,7 +105,7 @@ public class OneSongFragment extends Fragment implements OnItemSelectedListener,
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress,
 					boolean fromUser) {
-				System.out.println(time);
+				//System.out.println(time);
 			}
 		});
 		return 0;
