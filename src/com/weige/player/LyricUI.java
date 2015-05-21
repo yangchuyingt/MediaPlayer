@@ -38,6 +38,7 @@ public class LyricUI extends Activity {
 	private ImageButton ib_player_next;
 	private String songname;
 	private String singer;
+	private ImageButton ib_lyric_back;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,7 @@ public class LyricUI extends Activity {
 	}
 
 	private void initview() {
+		ib_lyric_back = (ImageButton) findViewById(R.id.ib_lyric_title_bar_back);
 		lv_lyric = (ListView) findViewById(R.id.lv_lyric);//歌词
 		tv_lyric_songname = (TextView) findViewById(R.id.tv_lyric_title_bar_songname);//歌曲名
 		tv_lyric_singer = (TextView) findViewById(R.id.tv_lyric_title_bar_singer);//歌手
@@ -61,6 +63,12 @@ public class LyricUI extends Activity {
 	}
 
 	private void initdata() {
+		ib_lyric_back.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				finish();
+			}
+		});
 		musicName = getIntent().getStringExtra("musicname");
 		songname = getIntent().getStringExtra("songname");
 		singer = getIntent().getStringExtra("singer");

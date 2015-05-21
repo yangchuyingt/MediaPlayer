@@ -17,24 +17,12 @@ import android.widget.RelativeLayout;
 
 public class SlidingMenu extends HorizontalScrollView {
 
-	/**
-	 * ∆¡ƒªøÌ∂»
-	 */
 	private int mScreenWidth;
-	/**
-	 * ≤Àµ•”“±ﬂæ‡
-	 */
 	private int mMenuRightPadding;
-	/**
-	 * ≤Àµ•µƒøÌ∂»
-	 */
 	private int mMenuWidth;
 	private int mHalfMenuWidth;
-
 	private boolean isOpen;
-
 	private boolean once;
-
 	private ViewGroup mMenu;
 	private ViewGroup mMainUI;
 	private RelativeLayout rl_bottom;
@@ -55,11 +43,10 @@ public class SlidingMenu extends HorizontalScrollView {
 			int attr = a.getIndex(i);
 			switch (attr) {
 			case R.styleable.SlidingMenu_leftPadding:
-				// ƒ¨»œ50
 				mMenuRightPadding = a.getDimensionPixelSize(attr,
 						(int) TypedValue.applyDimension(
 								TypedValue.COMPLEX_UNIT_DIP, 50f,
-								getResources().getDisplayMetrics()));// ƒ¨»œŒ™10DP
+								getResources().getDisplayMetrics()));
 				break;
 			}
 		}
@@ -72,9 +59,6 @@ public class SlidingMenu extends HorizontalScrollView {
 
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		/**
-		 * œ‘ æµƒ…Ë÷√“ª∏ˆøÌ∂»
-		 */
 		if (!once) {
 			LinearLayout wrapper = (LinearLayout) getChildAt(0);
 			mMainUI = (ViewGroup) wrapper.getChildAt(0);
@@ -95,7 +79,6 @@ public class SlidingMenu extends HorizontalScrollView {
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
 		super.onLayout(changed, l, t, r, b);
 		if (changed) {
-			// Ω´≤Àµ•“˛≤ÿ
 			this.scrollTo(0, 0);
 			once = true;
 		}
@@ -159,7 +142,6 @@ public class SlidingMenu extends HorizontalScrollView {
             break;  
         case MotionEvent.ACTION_MOVE: 
         	break;
-		// Up ±£¨Ω¯––≈–∂œ£¨»Áπ˚œ‘ æ«¯”Ú¥Û”⁄≤Àµ•øÌ∂»“ª∞Î‘ÚÕÍ»´œ‘ æ£¨∑Ò‘Ú“˛≤ÿ
 		case MotionEvent.ACTION_UP:
 			if (scrollX > mHalfMenuWidth) {
 				this.smoothScrollTo(mMenuWidth, 0);
@@ -169,15 +151,10 @@ public class SlidingMenu extends HorizontalScrollView {
 				isOpen = false;
 			}
 			return true;
-//			break;
 		}
 		return super.onTouchEvent(ev);
 	}
 	
-
-	/**
-	 * ¥Úø™≤Àµ•
-	 */
 	public void openMenu() {
 		if (isOpen)
 			return;
@@ -185,9 +162,6 @@ public class SlidingMenu extends HorizontalScrollView {
 		isOpen = true;
 	}
 
-	/**
-	 * πÿ±’≤Àµ•
-	 */
 	public void closeMenu() {
 		if (isOpen) {
 			this.smoothScrollTo(0, 0);
@@ -195,9 +169,6 @@ public class SlidingMenu extends HorizontalScrollView {
 		}
 	}
 
-	/**
-	 * «–ªª≤Àµ•◊¥Ã¨
-	 */
 	public void toggle() {
 		if (isOpen) {
 			closeMenu();
@@ -222,7 +193,7 @@ public class SlidingMenu extends HorizontalScrollView {
 		ViewHelper.setScaleX(mMenu, rightScale);
 		ViewHelper.setScaleY(mMenu, rightScale);
 		ViewHelper.setAlpha(mMenu, 0.6f + 0.4f * scale);
-		ViewHelper.setTranslationX(mMenu, mMenuWidth * scale * 0.05f);//∆´“∆¡ø
+		ViewHelper.setTranslationX(mMenu, mMenuWidth * scale * 0.05f);//ÂÅèÁßªÈáè
 	}
 
 }

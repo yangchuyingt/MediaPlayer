@@ -247,5 +247,6 @@ public class MusicShowAdapter extends CursorAdapter {
 		LinearLayout ll_buttonitem, ll_set_to_ring, ll_add, ll_music_message,
 				ll_delete;
 	}
+	
 
 }

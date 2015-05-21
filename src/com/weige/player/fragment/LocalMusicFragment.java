@@ -41,6 +41,7 @@ public class LocalMusicFragment extends Fragment implements
 	// private Spinner sp_local_music;
 	private Spinneradapter adapter;
 	private ArrayList<Fragment> fragmentlist;
+	private ImageButton ib_local_music_back;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -67,6 +68,7 @@ public class LocalMusicFragment extends Fragment implements
 	}
 
 	private void initview() {
+		ib_local_music_back = (ImageButton) view.findViewById(R.id.ib_local_music_back);
 		rg_local_music = (RadioGroup) view.findViewById(R.id.rg_local_music);
 		((RadioButton) rg_local_music.getChildAt(0)).setChecked(true);
 
@@ -75,7 +77,15 @@ public class LocalMusicFragment extends Fragment implements
 	}
 
 	private void initdata() {
-
+		ib_local_music_back.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				FragmentManager fm = getActivity().getSupportFragmentManager();
+				fm.popBackStack();
+				
+			}
+		});
 		rg_local_music.setOnCheckedChangeListener(this);
 		setcurrentfragment(1);
 		/*	*/
