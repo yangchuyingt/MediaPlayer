@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.weige.player.MainUI;
 import com.weige.player.R;
+import com.weige.player.listener.ChangeLyricListener;
 import com.weige.player.listener.CurrentmusicTimeListener;
 import com.weige.player.utils.FormatHelper;
 
@@ -34,6 +35,7 @@ public class MusicShowAdapter extends CursorAdapter {
 	private CurrentmusicTimeListener listener;
 	private Thread thread;
 	private int currentposition=0;
+	private ChangeLyricListener lyricListener;
 
 	public MusicShowAdapter(Context context, Cursor c) {
 		super(context, c);
@@ -200,18 +202,20 @@ public class MusicShowAdapter extends CursorAdapter {
 				int time = -1;
 				while (!interrupted()) {
 					try {
-						//System.out.println("setProgress()�����е�ʱ��:"+FormatHelper.formatDuration(times)+",cursor��λ��:");
 						time = player.getCurrentPosition();
 					} catch (Exception e) {
 						time = 0;
 					}
-					SystemClock.sleep(1000);
-					listener.getcurrentmusictime(time);
-				    //System.out.println("û��playnext"+"��ǰ����ʱ��:"+time+",��ʱ��:"+times+","+(time >=times));
+					if(listener!=null){
+						listener.getcurrentmusictime(time);
+					}
+					if(lyricListener!=null){
+						lyricListener.changlyrics(time);
+					}
 					if ( time+1000 >=times) {
 						playnext();
-						//System.out.println("playnext");
 					} 
+					SystemClock.sleep(1000);
 				}
 			};
 		};
@@ -249,6 +253,11 @@ public class MusicShowAdapter extends CursorAdapter {
 		RadioButton rb_more_options;
 		LinearLayout ll_buttonitem, ll_set_to_ring, ll_add, ll_music_message,
 				ll_delete;
+	}
+
+	public void setchangeliyricListener(ChangeLyricListener listener) {
+		lyricListener=listener;
+		
 	}
 
 }

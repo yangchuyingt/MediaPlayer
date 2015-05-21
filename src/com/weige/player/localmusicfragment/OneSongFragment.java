@@ -29,7 +29,7 @@ public class OneSongFragment extends Fragment implements OnItemSelectedListener,
 	private Spinneradapter adapter;
 	private ListView lv_show_song_name;
 	private ListView lv_alphabet_order;
-	private MusicShowAdapter adapter2;
+	private static MusicShowAdapter adapter2;
 
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -93,5 +93,7 @@ public class OneSongFragment extends Fragment implements OnItemSelectedListener,
 		//System.out.println(FormatHelper.formatDuration(time));
 		return 0;
 	}
-	
+	public static MusicShowAdapter getadapter(){
+		return adapter2;
+	} 
 }

@@ -6,28 +6,41 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
+import android.R.integer;
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.InputFilter.LengthFilter;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.weige.player.adapter.LyricAdapter;
+import com.weige.player.adapter.MusicShowAdapter;
+import com.weige.player.fragment.TingFragment;
+import com.weige.player.listener.ChangeLyricListener;
+import com.weige.player.localmusicfragment.OneSongFragment;
 import com.weige.player.utils.Constants;
 import com.weige.player.utils.FileUtils;
+import com.weige.player.utils.FormatHelper;
 
-public class LyricUI extends Activity {
+public class LyricUI extends Activity implements ChangeLyricListener {
 
+	private static final int CHANGECOLOR = 0;
 	private ListView lv_lyric;
 	private String musicName;
 	private String musicTime;
 	private String[] gecis;
+	private Map<String,Integer > times;
 	private TextView tv_lyric_songname;
 	private TextView tv_lyric_singer;
 	private TextView tv_time_begin;
@@ -38,6 +51,37 @@ public class LyricUI extends Activity {
 	private ImageButton ib_player_next;
 	private String songname;
 	private String singer;
+	private MusicShowAdapter adapter;
+	private Integer position;
+	private int beforposition=-1;
+    Handler myHandler=new Handler(){
+    	private int selector;
+
+		public void handleMessage(android.os.Message msg) {
+    		switch (msg.what) {
+			case CHANGECOLOR:
+				
+				selector = position>6?position-6:0;
+				lv_lyric.setSelection(selector);
+				if(selector==0||position>gecis.length-6){
+					((TextView)((LinearLayout)lv_lyric.getChildAt(position)).getChildAt(0)).setTextColor(android.graphics.Color.BLACK);
+					if(beforposition!=-1){
+						((TextView)((LinearLayout)lv_lyric.getChildAt(beforposition)).getChildAt(0)).setTextColor(android.graphics.Color.WHITE);
+					}
+				}else{
+					((TextView)((LinearLayout)lv_lyric.getChildAt(position-selector+1)).getChildAt(0)).setTextColor(android.graphics.Color.BLACK);
+					if(beforposition!=-1){
+						((TextView)((LinearLayout)lv_lyric.getChildAt(beforposition-selector+1)).getChildAt(0)).setTextColor(android.graphics.Color.WHITE);
+					}
+				}
+				beforposition=position;
+				break;
+
+			default:
+				break;
+			}
+    	};
+    };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -79,13 +123,26 @@ public class LyricUI extends Activity {
 				+ split[0] + ".lrc");
 		if (file != null && file.exists()) {
 			String lyric = parseFile(file).trim();
-			gecis = lyric.split("\\r");
+			gecis = lyric.split("\\n");
+			gettimtefromgecis(gecis);
 			System.out.println("歌词长度:" + gecis.length);
 			lv_lyric.setAdapter(new LyricAdapter(gecis, this));
 
 		} else {
 			Toast.makeText(this, "没有歌词!", 0).show();
 		}
+		adapter = OneSongFragment.getadapter();
+		adapter.setchangeliyricListener(this);
+	}
+
+	private void gettimtefromgecis(String[] gecis2) {
+		times=new HashMap<String, Integer>();
+		for(int i=0;i<gecis.length;i++){
+			//times[i]=;
+			//times.add(gecis[i].substring(1, 6));
+			times.put(gecis[i].substring(1, 6), i);
+		}
+		
 	}
 
 	private String parseFile(File file) {
@@ -94,14 +151,14 @@ public class LyricUI extends Activity {
 		try {
 			reader = new InputStreamReader(new FileInputStream(file), "gbk");
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		char[] chararray = new char[1024];
+		char[] chararray = new char[512];
 		int length = 0;
 		try {
 			while ((length = reader.read(chararray)) != -1) {
-				builder.append(chararray);
+				builder.append(chararray, 0, length-1);
+				//builder.append(chararray);//以前是这句，现在是上面的那句，读多了
 			}
 
 		} catch (IOException e) {
@@ -109,5 +166,16 @@ public class LyricUI extends Activity {
 			e.printStackTrace();
 		}
 		return builder.toString();
+	}
+
+	@Override
+	public void changlyrics(int time) {
+		String tm=FormatHelper.formatDuration(time);
+		position = times.get(tm);
+		if(position!=null){
+			myHandler.sendEmptyMessage(CHANGECOLOR);
+			
+		}
+		
 	}
 }

@@ -8,7 +8,6 @@ import android.app.Application;
 public class Myplayer extends Application {
 	@Override
 	public void onCreate() {
-		//System.out.println("ִ��ǰ;");
 		String path=FileUtils.getFilePath(getApplicationContext(), Constants.FOLDER_NAME_PATH);
 	}
 }
