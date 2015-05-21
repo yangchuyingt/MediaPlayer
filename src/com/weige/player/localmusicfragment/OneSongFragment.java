@@ -1,7 +1,6 @@
 package com.weige.player.localmusicfragment;
 
 import android.database.Cursor;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
@@ -13,8 +12,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ListView;
 import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.weige.player.MainUI;
 import com.weige.player.R;
@@ -25,7 +24,7 @@ import com.weige.player.listener.CurrentmusicTimeListener;
 import com.weige.player.utils.FormatHelper;
 
 public class OneSongFragment extends Fragment implements OnItemSelectedListener, OnItemClickListener, CurrentmusicTimeListener {
-     private Spinner sp_local_music;
+    private Spinner sp_local_music;
 	private Spinneradapter adapter;
 	private ListView lv_show_song_name;
 	private ListView lv_alphabet_order;
@@ -86,11 +85,29 @@ public class OneSongFragment extends Fragment implements OnItemSelectedListener,
 		return adapter2;
 	}
 	@Override
-	public int getcurrentmusictime(int time) {
+	public int getcurrentmusictime(final int time) {
 		SeekBar seekBar = MainUI.getmusicbar();
-		//System.out.println("mainUI_max:"+FormatHelper.formatDuration(seekBar.getMax()));
+		System.out.println((seekBar.getMax()));
 		seekBar.setProgress(time);
 		//System.out.println(FormatHelper.formatDuration(time));
+		seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+			
+			@Override
+			public void onStopTrackingTouch(SeekBar seekBar) {
+				
+			}
+			
+			@Override
+			public void onStartTrackingTouch(SeekBar seekBar) {
+				
+			}
+			
+			@Override
+			public void onProgressChanged(SeekBar seekBar, int progress,
+					boolean fromUser) {
+				System.out.println(time);
+			}
+		});
 		return 0;
 	}
 	public static MusicShowAdapter getadapter(){

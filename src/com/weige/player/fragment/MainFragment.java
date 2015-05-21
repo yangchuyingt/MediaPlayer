@@ -30,14 +30,12 @@ public class MainFragment extends Fragment implements OnClickListener {
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
-		// 初始化控件
+		
 		mTabTing = (RadioButton) mainView.findViewById(R.id.rb_ic_main_top_ting);
 		mTabKan = (RadioButton) mainView.findViewById(R.id.rb_ic_main_top_kan);
 		mTabChang = (RadioButton) mainView.findViewById(R.id.rb_ic_main_top_chang);
-		
-		// 设置监听
+
 		mTabTing.setOnClickListener(this);
 		mTabKan.setOnClickListener(this);
 		mTabChang.setOnClickListener(this);

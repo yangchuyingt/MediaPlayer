@@ -124,7 +124,6 @@ public class MusicShowAdapter extends CursorAdapter {
 				R.drawable.ic_main_playing_bar_pause_selector);
 		MainUI.getmusicbar().setMax(getmusictime());
 		try {
-			
 			MainUI.getsongnameview().setText(FormatHelper.getSongname(getmusicname()));
 			MainUI.getsingerview().setText(FormatHelper.getSinger(getmusicname()));
 		} catch (Exception e) {
@@ -213,6 +212,7 @@ public class MusicShowAdapter extends CursorAdapter {
 						lyricListener.changlyrics(time);
 					}
 					if ( time+1000 >=times) {
+
 						playnext();
 					} 
 					SystemClock.sleep(1000);
@@ -254,6 +254,7 @@ public class MusicShowAdapter extends CursorAdapter {
 		LinearLayout ll_buttonitem, ll_set_to_ring, ll_add, ll_music_message,
 				ll_delete;
 	}
+	
 
 	public void setchangeliyricListener(ChangeLyricListener listener) {
 		lyricListener=listener;
