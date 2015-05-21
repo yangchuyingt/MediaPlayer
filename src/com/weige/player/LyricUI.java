@@ -72,7 +72,7 @@ public class LyricUI extends Activity implements ChangeLyricListener {
 					 holderlist[position].getTv_liric().setTextColor(android.graphics.Color.BLACK);
 					
 				 }
-				 if (beforposition!=-1&&beforposition!=position) {
+				 if (beforposition!=-1&&holderlist[beforposition]!=null&&beforposition!=position) {
 					 holderlist[beforposition].getTv_liric().setTextColor(android.graphics.Color.WHITE);
 				}
 				 beforposition=position;
