@@ -1,7 +1,9 @@
 package com.weige.player;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -35,9 +37,10 @@ public class MainUI extends FragmentActivity implements OnClickListener {
 	private ImageButton ib_playlist_queue;
 	private ImageButton ib_bar_next;
 	private static ImageButton ib_bar_play;
-	private MusicShowAdapter mediaPlayeradapter;
+	//private MusicShowAdapter mediaPlayeradapter;
 	private RadioButton rb_right_menu_exit;
 	private RadioButton rb_right_menu_home;
+	private static MusicShowAdapter adapter2;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,16 +67,17 @@ public class MainUI extends FragmentActivity implements OnClickListener {
 	}
 
 	private void initData() {
+		Cursor cursor = getContentResolver().query(  
+			       MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null, null,  
+			       MediaStore.Audio.Media.DEFAULT_SORT_ORDER); 
+		adapter2 = new MusicShowAdapter(this, cursor);
 		mbottom_bar.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				mediaPlayeradapter = mMain.getmTingFragment()
-						.getlocalMusicFragment().getMediaPlayeradapter();
+				/*mediaPlayeradapter = mMain.getmTingFragment()
+						.getlocalMusicFragment().getMediaPlayeradapter();*/
 				Intent intent = new Intent(MainUI.this, LyricUI.class);
-				intent.putExtra("musicname", mediaPlayeradapter.getmusicname());
-				intent.putExtra("songname", FormatHelper.getSongname(mediaPlayeradapter.getmusicname()));
-				intent.putExtra("singer", FormatHelper.getSinger(mediaPlayeradapter.getmusicname()));
-				intent.putExtra("musictime", FormatHelper.formatDuration(mediaPlayeradapter.getmusictime()));
+				
 				startActivity(intent);
 
 			}
@@ -82,8 +86,11 @@ public class MainUI extends FragmentActivity implements OnClickListener {
 		ib_bar_play.setOnClickListener(this);
 		rb_right_menu_exit.setOnClickListener(this);
 		rb_right_menu_home.setOnClickListener(this);
+		
 	}
-
+ public static MusicShowAdapter getmusicadapter(){
+	 return adapter2;
+ }
 	private void initFragment() {
 		FragmentManager fm = getSupportFragmentManager();
 		FragmentTransaction ft = fm.beginTransaction();
@@ -100,21 +107,21 @@ public class MainUI extends FragmentActivity implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.ib_bar_next:
-			mediaPlayeradapter = mMain.getmTingFragment()
-					.getlocalMusicFragment().getMediaPlayeradapter();
-			mediaPlayeradapter.playnext();
+			/*mediaPlayeradapter = mMain.getmTingFragment()
+					.getlocalMusicFragment().getMediaPlayeradapter();*/
+			adapter2.playnext();
 			sb_main.setProgress(0);
 
 			break;
 		case R.id.ib_bar_play:
-			mediaPlayeradapter = mMain.getmTingFragment()
-					.getlocalMusicFragment().getMediaPlayeradapter();
-			if (mediaPlayeradapter.isplayingmusic()) {
-				mediaPlayeradapter.playpause();
+			/*mediaPlayeradapter = mMain.getmTingFragment()
+					.getlocalMusicFragment().getMediaPlayeradapter();*/
+			if (adapter2.isplayingmusic()) {
+				adapter2.playpause();
 				ib_bar_play
 						.setBackgroundResource(R.drawable.ic_main_playing_bar_play_selector);
 			} else {
-				mediaPlayeradapter.playresume();
+				adapter2.playresume();
 				ib_bar_play
 						.setBackgroundResource(R.drawable.ic_main_playing_bar_pause_selector);
 			}

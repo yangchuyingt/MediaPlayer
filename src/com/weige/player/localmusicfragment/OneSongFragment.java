@@ -54,10 +54,7 @@ public class OneSongFragment extends Fragment implements OnItemSelectedListener,
 		adapter = new Spinneradapter(getActivity(),img,playtext);
 		sp_local_music.setAdapter(adapter);
 		lv_alphabet_order.setAdapter(new AlphabatOrderAdapter(alphabat, getActivity()));
-		Cursor cursor = getActivity().getContentResolver().query(  
-			       MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null, null,  
-			       MediaStore.Audio.Media.DEFAULT_SORT_ORDER); 
-		adapter2 = new MusicShowAdapter(getActivity(), cursor);
+		adapter2=MainUI.getmusicadapter();
 		adapter2.setOnCurrentmusicListener(this);
 		lv_show_song_name.setAdapter(adapter2);
 		lv_alphabet_order.setOnItemClickListener(this);
@@ -66,6 +63,7 @@ public class OneSongFragment extends Fragment implements OnItemSelectedListener,
 	public void onItemSelected(AdapterView<?> parent, View view, int position,
 			long id) {
 		adapter.setmark(position);
+		adapter2.changeplaymode(position);
 		
 	}
 	@Override

@@ -34,30 +34,31 @@ public class MusicShowAdapter extends CursorAdapter {
 	private int pause;
 	private CurrentmusicTimeListener listener;
 	private Thread thread;
-	private int currentposition=0;
+	private int currentposition = 0;
 	private ChangeLyricListener lyricListener;
+	private int mode;
 
 	public MusicShowAdapter(Context context, Cursor c) {
 		super(context, c);
 		this.context = context;
 
-			cursor = c;
-			// �˴�������bug��Ҫ�޸�;
+		cursor = c;
+		// �˴�������bug��Ҫ�޸�;
 	}
 
 	@Override
-	public void bindView(View view, final Context context,  final Cursor c) {
+	public void bindView(View view, final Context context, final Cursor c) {
 		ViewHolder viewholder = (ViewHolder) view.getTag();
 		final String name = c.getString(c
 				.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME));
 		final String url = c.getString(c
 				.getColumnIndex(MediaStore.Audio.Media.DATA));
-		
+
 		final String singer = c.getString(c
 				.getColumnIndex(MediaStore.Audio.Media.ARTIST));
 		final int musictime = c.getInt(c
 				.getColumnIndex(MediaStore.Audio.Media.DURATION));
-		final int position=c.getPosition();
+		final int position = c.getPosition();
 		viewholder.tv_song_name.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -68,16 +69,18 @@ public class MusicShowAdapter extends CursorAdapter {
 						R.drawable.ic_main_playing_bar_pause_selector);
 				// Toast.makeText(context, "play !", 0).show();
 				MainUI.getmusicbar().setMax(musictime);
-				MainUI.getsongnameview().setText(FormatHelper.getSongname(name));
+				MainUI.getsongnameview()
+						.setText(FormatHelper.getSongname(name));
 				MainUI.getsingerview().setText(FormatHelper.getSinger(name));
-				/*MainUI.getmusicbar().setMax(getmusictime());
-				MainUI.getsongnameview().setText(getmusicname());
-				MainUI.getsingerview().setText(getsinger());*/
+				/*
+				 * MainUI.getmusicbar().setMax(getmusictime());
+				 * MainUI.getsongnameview().setText(getmusicname());
+				 * MainUI.getsingerview().setText(getsinger());
+				 */
 			}
 
 		});
 		viewholder.tv_song_name.setText(FormatHelper.getListSongname(name));
-		
 
 	}
 
@@ -86,28 +89,28 @@ public class MusicShowAdapter extends CursorAdapter {
 	}
 
 	public int getmusictime() {
-		if(cursor.moveToPosition(currentposition)){
-		 int time =cursor.getInt(cursor
-				.getColumnIndex(MediaStore.Audio.Media.DURATION));
-		 return time;
+		if (cursor.moveToPosition(currentposition)) {
+			int time = cursor.getInt(cursor
+					.getColumnIndex(MediaStore.Audio.Media.DURATION));
+			return time;
 		}
 		return 0;
 	}
 
 	public String getmusicname() {
-		if(cursor.moveToPosition(currentposition)){
-			
-		return cursor.getString(cursor
-				.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME));
+		if (cursor.moveToPosition(currentposition)) {
+
+			return cursor.getString(cursor
+					.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME));
 		}
 		return null;
 	}
 
 	public String getsinger() {
-		if(cursor.moveToPosition(currentposition)){
-			
-		return cursor.getString(cursor
-				.getColumnIndex(MediaStore.Audio.Media.ARTIST));
+		if (cursor.moveToPosition(currentposition)) {
+
+			return cursor.getString(cursor
+					.getColumnIndex(MediaStore.Audio.Media.ARTIST));
 		}
 		return null;
 	}
@@ -124,8 +127,10 @@ public class MusicShowAdapter extends CursorAdapter {
 				R.drawable.ic_main_playing_bar_pause_selector);
 		MainUI.getmusicbar().setMax(getmusictime());
 		try {
-			MainUI.getsongnameview().setText(FormatHelper.getSongname(getmusicname()));
-			MainUI.getsingerview().setText(FormatHelper.getSinger(getmusicname()));
+			MainUI.getsongnameview().setText(
+					FormatHelper.getSongname(getmusicname()));
+			MainUI.getsingerview().setText(
+					FormatHelper.getSinger(getmusicname()));
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -133,11 +138,11 @@ public class MusicShowAdapter extends CursorAdapter {
 	}
 
 	public void playMusic() {
-		if(cursor.moveToPosition(currentposition)){
-			
-		String url = cursor.getString(cursor
-				.getColumnIndex(MediaStore.Audio.Media.DATA));
-		playMusic(context, url);
+		if (cursor.moveToPosition(currentposition)) {
+
+			String url = cursor.getString(cursor
+					.getColumnIndex(MediaStore.Audio.Media.DATA));
+			playMusic(context, url);
 		}
 	}
 
@@ -145,19 +150,59 @@ public class MusicShowAdapter extends CursorAdapter {
 		return player;
 	}
 
+	/**
+	 * 顺序播放
+	 */
 	public void playnext() {
-		if(cursor.moveToPosition(currentposition)){
-			
-		if(!cursor.moveToNext()){
-			cursor.moveToFirst();
-		
-		}
-		currentposition = cursor.getPosition();
-		String url = cursor.getString(cursor
-				.getColumnIndex(MediaStore.Audio.Media.DATA));
-		playMusic(context, url);
+		if (cursor.moveToPosition(currentposition)) {
+
+			if (!cursor.moveToNext()) {
+				cursor.moveToFirst();
+
+			}
+			currentposition = cursor.getPosition();
+			String url = cursor.getString(cursor
+					.getColumnIndex(MediaStore.Audio.Media.DATA));
+			playMusic(context, url);
 		}
 
+	}
+
+	/**
+	 * 单曲播放
+	 */
+	public void playsingle() {
+		if (cursor.moveToPosition(currentposition)) {
+
+			String url = cursor.getString(cursor
+					.getColumnIndex(MediaStore.Audio.Media.DATA));
+			playMusic(context, url);
+		}
+	}
+
+	public void playradom() {
+		int redom = (int) Math.random() * (cursor.getCount() - 1);
+		if (cursor.moveToPosition(redom)) {
+
+			String url = cursor.getString(cursor
+					.getColumnIndex(MediaStore.Audio.Media.DATA));
+			playMusic(context, url);
+		}
+
+	}
+
+	public void playPrivious() {
+		if (cursor.moveToPosition(currentposition)) {
+
+			if (!cursor.moveToPrevious()) {
+				cursor.moveToFirst();
+
+			}
+			currentposition = cursor.getPosition();
+			String url = cursor.getString(cursor
+					.getColumnIndex(MediaStore.Audio.Media.DATA));
+			playMusic(context, url);
+		}
 	}
 
 	public void playstop() {
@@ -177,7 +222,6 @@ public class MusicShowAdapter extends CursorAdapter {
 		return isplayingmusic;
 	}
 
-
 	public int playresume() {
 		if (player != null) {
 			player.seekTo(pause);
@@ -190,16 +234,18 @@ public class MusicShowAdapter extends CursorAdapter {
 		}
 		return pause;
 	}
-        public void playresume(int pauses){
-        	if (player != null) {
-    			player.seekTo(pauses);
-    			player.start();
-    			setprogress(getmusictime());
-    			isplayingmusic = true;
-    		} else {
-    			playMusic();
-    		}
-        }
+
+	public void playresume(int pauses) {
+		if (player != null) {
+			player.seekTo(pauses);
+			player.start();
+			setprogress(getmusictime());
+			isplayingmusic = true;
+		} else {
+			playMusic();
+		}
+	}
+
 	public void setOnCurrentmusicListener(CurrentmusicTimeListener listener) {
 		this.listener = listener;
 	}
@@ -214,23 +260,37 @@ public class MusicShowAdapter extends CursorAdapter {
 					} catch (Exception e) {
 						time = 0;
 					}
-					if(listener!=null){
+					if (listener != null) {
 						listener.getcurrentmusictime(time);
 					}
-					if(lyricListener!=null){
+					if (lyricListener != null) {
 						lyricListener.changlyrics(time);
 					}
-					if ( time+1000 >=times) {
-
-						playnext();
-					} 
-					SystemClock.sleep(1000);
+					if (time + 1000 >= times) {
+                        switch (mode) {
+						case 0:
+							playnext();
+							break;
+						case 1:
+							playradom();
+							break;
+						case 2:
+							playsingle();
+							break;
+						default:
+							break;
+						}
+						
+					}
+					SystemClock.sleep(900);
 				}
 			};
 		};
 		thread.start();
 	}
-    
+   public void changeplaymode(int position){
+    mode=position;
+   }
 	@Override
 	public View newView(Context arg0, final Cursor c, ViewGroup arg2) {
 		View view = null;
@@ -251,7 +311,7 @@ public class MusicShowAdapter extends CursorAdapter {
 		holder.ll_delete = (LinearLayout) view.findViewById(R.id.ll_delete);
 		holder.ll_buttonitem = (LinearLayout) view
 				.findViewById(R.id.ll_buttonitem);
-		
+
 		view.setTag(holder);
 		return view;
 	}
@@ -263,11 +323,10 @@ public class MusicShowAdapter extends CursorAdapter {
 		LinearLayout ll_buttonitem, ll_set_to_ring, ll_add, ll_music_message,
 				ll_delete;
 	}
-	
 
 	public void setchangeliyricListener(ChangeLyricListener listener) {
-		lyricListener=listener;
-		
+		lyricListener = listener;
+
 	}
 
 }

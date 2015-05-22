@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.InputFilter.LengthFilter;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageButton;
@@ -35,12 +36,11 @@ import com.weige.player.utils.Constants;
 import com.weige.player.utils.FileUtils;
 import com.weige.player.utils.FormatHelper;
 
-public class LyricUI extends Activity implements ChangeLyricListener {
+public class LyricUI extends Activity implements ChangeLyricListener, OnClickListener {
 
 	private static final int CHANGECOLOR = 0;
+	private static final int CHANGETIME = 1;
 	private ListView lv_lyric;
-	private String musicName;
-	private String musicTime;
 	private String[] gecis;
 	private Map<String,Integer > times;
 	private TextView tv_lyric_songname;
@@ -51,8 +51,6 @@ public class LyricUI extends Activity implements ChangeLyricListener {
 	private ImageButton ib_player_prev;
 	private ImageButton ib_player_playorpause;
 	private ImageButton ib_player_next;
-	private String songname;
-	private String singer;
 	private MusicShowAdapter adapter;
 	private Integer position;
 	private int beforposition=-1;
@@ -75,6 +73,7 @@ public class LyricUI extends Activity implements ChangeLyricListener {
 				 if (beforposition!=-1&&holderlist[beforposition]!=null&&beforposition!=position) {
 					 holderlist[beforposition].getTv_liric().setTextColor(android.graphics.Color.WHITE);
 				}
+				
 				 beforposition=position;
 				/*if(selector==0){
 					((TextView)((LinearLayout)lv_lyric.getChildAt(position)).getChildAt(0)).setTextColor(android.graphics.Color.BLACK);
@@ -90,13 +89,22 @@ public class LyricUI extends Activity implements ChangeLyricListener {
 				
 				break;
 
-			default:
+			case CHANGETIME:
+				 sb_lyric.setProgress(time);
+				 tv_time_begin.setText(tm);
 				break;
 			}
     	};
     };
 	private ImageButton ib_lyric_back;
 	private LyricAdapter lyricadapter;
+	private int time;
+	private MusicShowAdapter playmusiadapter;
+	private String tm;
+	private String musicName;
+	private String songname;
+	private String singer;
+	private String musicTime;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +113,7 @@ public class LyricUI extends Activity implements ChangeLyricListener {
 		setContentView(R.layout.lyric);
 		initview();
 		initdata();
+		
 	}
 
 	private void initview() {
@@ -119,22 +128,50 @@ public class LyricUI extends Activity implements ChangeLyricListener {
 		ib_player_playorpause = (ImageButton) findViewById(R.id.ib_player_playorpause);//播放或暂停
 		ib_player_next = (ImageButton) findViewById(R.id.ib_player_next);//下一曲
 	}
-
+    @Override
+    protected void onStart() {
+    	// TODO Auto-generated method stub
+    	super.onStart();
+    	if(playmusiadapter.isplayingmusic()){
+    		ib_player_playorpause
+			.setBackgroundResource(R.drawable.ic_player_pause_bg);
+    	}else{
+    		ib_player_playorpause
+			.setBackgroundResource(R.drawable.ic_player_play_bg);
+    	}
+    	
+    }
 	private void initdata() {
+		playmusiadapter=MainUI.getmusicadapter();
 		ib_lyric_back.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				finish();
 			}
 		});
-		musicName = getIntent().getStringExtra("musicname");
-		songname = getIntent().getStringExtra("songname");
-		singer = getIntent().getStringExtra("singer");
-		musicTime = getIntent().getStringExtra("musictime");
 		
+		/*String musicName = getIntent().getStringExtra("musicname");
+		String songname = getIntent().getStringExtra("songname");
+		String singer = getIntent().getStringExtra("singer");
+		String musicTime = getIntent().getStringExtra("musictime");*/
+		
+		loaddata();
+		adapter = OneSongFragment.getadapter();
+		adapter.setchangeliyricListener(this);
+		ib_player_prev.setOnClickListener(this);
+		ib_player_playorpause.setOnClickListener(this);
+		ib_player_next.setOnClickListener(this);
+	}
+
+	private void loaddata() {
+		musicName = playmusiadapter.getmusicname();
+		songname =FormatHelper.getSongname(playmusiadapter.getmusicname());
+		singer= FormatHelper.getSinger(playmusiadapter.getmusicname());
+		musicTime= FormatHelper.formatDuration(playmusiadapter.getmusictime());
 		tv_lyric_songname.setText(songname);
 		tv_lyric_singer.setText(singer);
 		tv_time_end.setText(musicTime);
+		sb_lyric.setMax(playmusiadapter.getmusictime());
 		
 		System.out.println("musicName:" + musicName);
 		String[] split = new String[2];
@@ -150,12 +187,12 @@ public class LyricUI extends Activity implements ChangeLyricListener {
 			System.out.println("歌词长度:" + gecis.length);
 			lyricadapter = new LyricAdapter(gecis, this);
 			lv_lyric.setAdapter(lyricadapter);
+			lv_lyric.setVisibility(View.VISIBLE);
 
 		} else {
 			Toast.makeText(this, "没有歌词!", 0).show();
+			lv_lyric.setVisibility(View.INVISIBLE);
 		}
-		adapter = OneSongFragment.getadapter();
-		adapter.setchangeliyricListener(this);
 	}
 
 	private void gettimtefromgecis(String[] gecis2) {
@@ -193,12 +230,54 @@ public class LyricUI extends Activity implements ChangeLyricListener {
 
 	@Override
 	public void changlyrics(int time) {
-		String tm=FormatHelper.formatDuration(time);
-		position = times.get(tm);
+		tm = FormatHelper.formatDuration(time);
+		try {
+			this.time=time;
+			position = times.get(tm);
+			
+		} catch (Exception e) {
+			myHandler.sendEmptyMessage(CHANGETIME);
+			System.out.println("time:"+time);
+			return;
+		}
 		if(position!=null){
 			myHandler.sendEmptyMessage(CHANGECOLOR);
 			System.out.println("position"+position);
 			
+		}else{
+			myHandler.sendEmptyMessage(CHANGETIME);
+			System.out.println("time:"+time);
+		}
+		
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.ib_player_prev:
+			playmusiadapter.playPrivious();
+			sb_lyric.setProgress(0);
+			loaddata();
+			break;
+		case R.id.ib_player_playorpause:
+			if (playmusiadapter.isplayingmusic()) {
+				playmusiadapter.playpause();
+				ib_player_playorpause
+						.setBackgroundResource(R.drawable.ic_player_play_bg);
+			} else {
+				playmusiadapter.playresume();
+				ib_player_playorpause
+						.setBackgroundResource(R.drawable.ic_player_pause_bg);
+			}
+			break;
+		case R.id.ib_player_next:
+			playmusiadapter.playnext();
+			sb_lyric.setProgress(0);
+			loaddata();
+			break;
+
+		default:
+			break;
 		}
 		
 	}
