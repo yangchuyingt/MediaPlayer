@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TingFragment extends Fragment implements OnClickListener {
 
@@ -131,7 +133,15 @@ public class TingFragment extends Fragment implements OnClickListener {
 	}
 	@Override
 	public void onClick(View v) {
-	  getActivity().startService(new Intent(getActivity(), UpdateService.class));
+		
+		String musicname=etSearch.getText().toString();
+		if(TextUtils.isEmpty(musicname)){
+			Toast.makeText(getActivity(), "你尚未输入要 搜索的音乐", 0).show();
+			return ;
+		}
+		Intent intent =new Intent(getActivity(), UpdateService.class);
+		intent.putExtra("musicname", musicname);
+	    getActivity().startService(intent);
 	}
 
 }

@@ -264,7 +264,7 @@ public class MusicShowAdapter extends CursorAdapter {
 						listener.getcurrentmusictime(time);
 					}
 					if (lyricListener != null) {
-						lyricListener.changlyrics(time);
+						lyricListener.changelyrics(time);
 					}
 					if (time + 1000 >= times) {
                         switch (mode) {

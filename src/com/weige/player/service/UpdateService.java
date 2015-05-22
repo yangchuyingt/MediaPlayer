@@ -54,7 +54,8 @@ public class UpdateService extends Service {
 	public static final int DOWNLOAD_FAIL=1;
 	private String filePath;
 	private boolean flag=false;
-	private String str; 
+	private String str;
+	private String musicname; 
 
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -73,13 +74,12 @@ public class UpdateService extends Service {
 		//获取传值 
 	   // titleId = intent.getIntExtra("titleId",0); 
 		try {
-			
-			//url =intent.getStringExtra("url");
+			musicname = intent.getStringExtra("musicname");
 		} catch (Exception e) {
 			return super.onStartCommand(intent, flags, startId);
 		}
 		filePath =Environment.getExternalStorageDirectory().getAbsolutePath()+Constants.FOLDER_NAME_PATH;
-	    file = new File(filePath+"a.mp3"); 
+	    file = new File(filePath+"musicname"); 
 	 
 	    this.updateNotificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE); 
 	    this.updateNotification = new Notification(); 

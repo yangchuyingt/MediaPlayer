@@ -23,6 +23,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +37,7 @@ import com.weige.player.utils.Constants;
 import com.weige.player.utils.FileUtils;
 import com.weige.player.utils.FormatHelper;
 
-public class LyricUI extends Activity implements ChangeLyricListener, OnClickListener {
+public class LyricUI extends Activity implements ChangeLyricListener, OnClickListener, OnSeekBarChangeListener {
 
 	private static final int CHANGECOLOR = 0;
 	private static final int CHANGETIME = 1;
@@ -105,6 +106,7 @@ public class LyricUI extends Activity implements ChangeLyricListener, OnClickLis
 	private String songname;
 	private String singer;
 	private String musicTime;
+	private int progress;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -161,6 +163,7 @@ public class LyricUI extends Activity implements ChangeLyricListener, OnClickLis
 		ib_player_prev.setOnClickListener(this);
 		ib_player_playorpause.setOnClickListener(this);
 		ib_player_next.setOnClickListener(this);
+		sb_lyric.setOnSeekBarChangeListener(this);
 	}
 
 	private void loaddata() {
@@ -229,7 +232,7 @@ public class LyricUI extends Activity implements ChangeLyricListener, OnClickLis
 	}
 
 	@Override
-	public void changlyrics(int time) {
+	public void changelyrics(int time) {
 		tm = FormatHelper.formatDuration(time);
 		try {
 			this.time=time;
@@ -279,6 +282,26 @@ public class LyricUI extends Activity implements ChangeLyricListener, OnClickLis
 		default:
 			break;
 		}
+		
+	}
+
+	@Override
+	public void onProgressChanged(SeekBar seekBar, int progress,
+			boolean fromUser) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onStartTrackingTouch(SeekBar seekBar) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onStopTrackingTouch(SeekBar seekBar) {
+		progress = seekBar.getProgress();
+		playmusiadapter.playresume(progress);
 		
 	}
 }
