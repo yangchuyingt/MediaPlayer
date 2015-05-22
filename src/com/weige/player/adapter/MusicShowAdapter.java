@@ -190,7 +190,16 @@ public class MusicShowAdapter extends CursorAdapter {
 		}
 		return pause;
 	}
-
+        public void playresume(int pauses){
+        	if (player != null) {
+    			player.seekTo(pauses);
+    			player.start();
+    			setprogress(getmusictime());
+    			isplayingmusic = true;
+    		} else {
+    			playMusic();
+    		}
+        }
 	public void setOnCurrentmusicListener(CurrentmusicTimeListener listener) {
 		this.listener = listener;
 	}

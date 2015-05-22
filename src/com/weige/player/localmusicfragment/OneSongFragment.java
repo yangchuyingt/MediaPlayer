@@ -92,9 +92,12 @@ public class OneSongFragment extends Fragment implements OnItemSelectedListener,
 		//System.out.println(FormatHelper.formatDuration(time));
 		seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 			
+			private int progress;
+
 			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
-				
+				progress = seekBar.getProgress();
+				adapter2.playresume(progress);
 			}
 			
 			@Override
@@ -105,7 +108,7 @@ public class OneSongFragment extends Fragment implements OnItemSelectedListener,
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress,
 					boolean fromUser) {
-				//System.out.println(time);
+				
 			}
 		});
 		return 0;

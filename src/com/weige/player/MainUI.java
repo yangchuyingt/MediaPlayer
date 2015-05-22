@@ -145,5 +145,5 @@ public class MainUI extends FragmentActivity implements OnClickListener {
 	public static TextView getsingerview() {
 		return tv_bar_singer;
 	}
-
+    
 }
